@@ -1,0 +1,174 @@
+.aCard {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--line);
+  color: var(--ink-soft);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.aCard:hover,
+.aCard:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 0 0 1px var(--line), var(--shadow);
+}
+
+.aCardImg {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--mint);
+}
+
+.aCardImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.aCard:hover .aCardImg img {
+  transform: scale(1.04);
+}
+
+.aCardBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 22px 22px;
+}
+
+.aTag {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--mint);
+  color: var(--ink);
+}
+
+.aCard h3 {
+  font-size: 1.15rem;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.aCardBody p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.aMeta {
+  margin-top: auto;
+  display: flex;
+  gap: 14px;
+  font-size: 0.8rem;
+  color: var(--sage);
+}
+
+/* Feature: big image beside the text */
+.aCard-feature {
+  flex-direction: row;
+}
+
+.aCard-feature .aCardImg {
+  flex: 1.2;
+  aspect-ratio: auto;
+  min-height: 340px;
+}
+
+.aCard-feature .aCardBody {
+  flex: 1;
+  padding: 36px;
+  justify-content: center;
+}
+
+.aCard-feature h3 {
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 700;
+}
+
+.aCard-feature .aCardBody p {
+  font-size: 1rem;
+  -webkit-line-clamp: 4;
+}
+
+.aCard-feature .aMeta {
+  margin-top: 8px;
+}
+
+/* Row: thumbnail + title */
+.aCard-row {
+  flex-direction: row;
+  align-items: center;
+  border-radius: 18px;
+}
+
+.aCard-row .aCardImg {
+  width: 120px;
+  flex-shrink: 0;
+  aspect-ratio: 1;
+  margin: 10px;
+  border-radius: 14px;
+}
+
+.aCard-row .aCardBody {
+  padding: 12px 18px 12px 6px;
+  gap: 6px;
+}
+
+.aCard-row h3 {
+  font-size: 1rem;
+}
+
+/* Skeletons */
+.aSkeleton {
+  pointer-events: none;
+}
+
+.aSkeleton .aCardImg,
+.skLine {
+  background: linear-gradient(90deg, #eaf3ee 25%, #f5faf7 50%, #eaf3ee 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+.skLine {
+  display: block;
+  height: 14px;
+  border-radius: 6px;
+}
+
+.skLine.short {
+  width: 35%;
+}
+
+@keyframes shimmer {
+  to { background-position: -200% 0; }
+}
+
+@media (max-width: 760px) {
+  .aCard-feature {
+    flex-direction: column;
+  }
+
+  .aCard-feature .aCardImg {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+
+  .aCard-feature .aCardBody {
+    padding: 22px;
+  }
+
+  .aCard-row .aCardImg {
+    width: 92px;
+  }
+}

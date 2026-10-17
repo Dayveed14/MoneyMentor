@@ -1,0 +1,285 @@
+.mainNav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(222, 246, 229, 0.88);
+  backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mainNav.scrolled {
+  border-bottom-color: var(--line);
+  box-shadow: 0 6px 20px -16px rgba(15, 61, 51, 0.5);
+}
+
+.navInner {
+  width: min(1240px, 100% - 40px);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 70px;
+}
+
+.navLogo img {
+  display: block;
+  width: 170px;
+  height: auto;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.navLink {
+  position: relative;
+  padding: 8px 12px;
+  color: var(--ink);
+  font-weight: 500;
+  font-size: 0.98rem;
+  border-radius: 8px;
+  transition: color 0.2s ease;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 2px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--teal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.navLink:hover {
+  color: var(--teal);
+}
+
+.navLink.active {
+  color: var(--teal);
+}
+
+.navLink.active::after {
+  transform: scaleX(1);
+}
+
+/* Modules dropdown */
+.navDrop {
+  position: relative;
+}
+
+.navDropTrigger {
+  display: flex;
+  align-items: center;
+}
+
+.navDropTrigger .navLink {
+  padding-right: 4px;
+}
+
+.navDropTrigger .navLink::after {
+  right: 4px;
+}
+
+.navChevron {
+  display: flex;
+  padding: 6px;
+  border: none;
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.navChevron:hover {
+  background: rgba(15, 61, 51, 0.08);
+}
+
+.navDrop.open .navChevron {
+  transform: rotate(180deg);
+}
+
+.navMenu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: -12px;
+  width: 320px;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+}
+
+.navDrop.open .navMenu {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.navMenuItem {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 10px;
+  transition: background-color 0.15s ease;
+}
+
+.navMenuItem:hover {
+  background: var(--mint);
+}
+
+.navMenuItem strong {
+  display: block;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.navMenuItem span {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.82rem;
+  color: var(--sage);
+  line-height: 1.4;
+}
+
+.navMenuAll {
+  display: block;
+  margin-top: 4px;
+  padding: 12px 14px;
+  border-top: 1px solid var(--line);
+  color: var(--teal);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.navMenuAll:hover {
+  text-decoration: underline;
+}
+
+.navCta {
+  margin-left: 10px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: var(--teal);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+}
+
+.navCta:hover,
+.navCta.active {
+  background: var(--teal-dark);
+}
+
+.navToggle {
+  display: none;
+  padding: 6px;
+  border: none;
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+@media (max-width: 860px) {
+  .navInner {
+    flex-wrap: wrap;
+    min-height: 62px;
+  }
+
+  .navLogo img {
+    width: 140px;
+  }
+
+  .navToggle {
+    display: flex;
+  }
+
+  .navRight {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 6px 0 18px;
+  }
+
+  .mainNav.menu-open .navRight {
+    display: flex;
+  }
+
+  .navLink {
+    padding: 13px 4px;
+    font-size: 1.02rem;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+  }
+
+  .navLink::after {
+    display: none;
+  }
+
+  .navDropTrigger {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .navDropTrigger .navLink {
+    flex: 1;
+    border-bottom: none;
+  }
+
+  /* On phones the module list sits inline under "Modules" */
+  .navMenu {
+    position: static;
+    width: auto;
+    padding: 0 0 6px 10px;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    display: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .navDrop.open .navMenu {
+    display: block;
+  }
+
+  .navMenuItem span {
+    display: none;
+  }
+
+  .navCta {
+    margin: 16px 0 0;
+    text-align: center;
+    padding: 13px;
+  }
+}
+
+/* Desktop: hovering Modules also previews the list */
+@media (hover: hover) and (min-width: 861px) {
+  .navDrop:hover .navMenu,
+  .navDrop:focus-within .navMenu {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .navDrop:hover .navChevron {
+    transform: rotate(180deg);
+  }
+}

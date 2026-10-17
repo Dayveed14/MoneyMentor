@@ -1,0 +1,31 @@
+.welcomeBanner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 12px 20px;
+  background: var(--ink);
+  color: #e6f4ec;
+  font-size: 0.95rem;
+  text-align: center;
+  animation: fadeUp 0.4s ease-out both;
+}
+
+.welcomeBanner a {
+  color: var(--coin);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.welcomeBanner button {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  cursor: pointer;
+}

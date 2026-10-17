@@ -1,0 +1,66 @@
+.articlesPreview {
+  padding: 100px 0;
+  background: #fff;
+  border-top: 1px solid var(--line);
+}
+
+.previewHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 44px;
+}
+
+.previewHead h2 {
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  font-weight: 700;
+  max-width: 18ch;
+}
+
+.previewGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 28px;
+}
+
+.previewGrid > .aCard-card .aCardImg {
+  aspect-ratio: 16 / 9.5;
+}
+
+.previewGrid > .aCard-card h3 {
+  font-size: 1.5rem;
+}
+
+.previewList {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
+.previewState {
+  padding: 56px 24px;
+  text-align: center;
+  border-radius: 22px;
+  background: var(--paper);
+  border: 1px dashed var(--line);
+}
+
+.previewState p {
+  margin-bottom: 16px;
+}
+
+@media (max-width: 900px) {
+  .articlesPreview {
+    padding: 72px 0;
+  }
+
+  .previewHead {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .previewGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

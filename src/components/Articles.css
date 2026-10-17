@@ -1,0 +1,232 @@
+.articles-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+  scroll-margin-top: 80px; /* clears the sticky nav */
+}
+
+.articles-header h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin: 0 0 20px 0;
+}
+
+.divider {
+  height: 1px;
+  background-color: #d1d5db;
+  margin-bottom: 40px;
+}
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.article-box {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.article-box:hover,
+.article-box:focus-visible {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.article-image-wrapper {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+  background: #eef2f1;
+}
+
+.article-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.article-box:hover .article-image {
+  transform: scale(1.05);
+}
+
+.article-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.article-box:hover .article-overlay,
+.article-box:focus-visible .article-overlay {
+  opacity: 1;
+}
+
+.article-summary {
+  color: #fff;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.article-content {
+  padding: 20px;
+}
+
+.article-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.article-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.article-category {
+  background: #e8f5f1;
+  color: #1a7f9e;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+/* Loading skeleton (replaces the spinner so the page doesn't jump) */
+.article-box.skeleton {
+  cursor: default;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.article-box.skeleton:hover {
+  transform: none;
+}
+
+.skeleton .article-image-wrapper,
+.skeleton-line {
+  background: linear-gradient(90deg, #eef2f1 25%, #f7faf9 50%, #eef2f1 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+.skeleton-line {
+  height: 16px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.skeleton-line.short {
+  width: 40%;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pagination-numbers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pagination-btn,
+.pagination-number {
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.pagination-btn {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-btn:hover:not(:disabled),
+.pagination-number:hover {
+  background-color: #f3f4f6;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-number {
+  width: 40px;
+  height: 40px;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.pagination-number.active {
+  background-color: #1a7f9e;
+  color: #fff;
+  border-color: #1a7f9e;
+}
+
+.error-state,
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.error-state p,
+.empty-state p {
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+.error-state button {
+  margin-top: 16px;
+  padding: 10px 24px;
+  background: #1a7f9e;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.error-state button:hover {
+  background: #156a84;
+}
+
+@media (max-width: 768px) {
+  .articles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .article-image-wrapper {
+    height: 200px;
+  }
+}

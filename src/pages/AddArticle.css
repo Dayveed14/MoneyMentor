@@ -1,0 +1,254 @@
+.add-article-page {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding: 40px 20px;
+}
+
+.add-article-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.add-article-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.add-article-header h1 {
+  font-size: 2rem;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.btn-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  color: #374151;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.btn-back:hover {
+  background-color: #f9fafb;
+}
+
+.add-article-form {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 30px;
+  align-items: start;
+}
+
+.add-article-form .form-section {
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.add-article-form .form-section h2 {
+  font-size: 1.25rem;
+  color: #1a1a1a;
+  margin: 0 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.add-article-form .form-group {
+  margin-bottom: 24px;
+}
+
+.add-article-form .form-group:last-child {
+  margin-bottom: 0;
+}
+
+.add-article-form .form-group > label {
+  display: block;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.add-article-form input[type="text"],
+.add-article-form select,
+.add-article-form textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-article-form input:focus,
+.add-article-form select:focus,
+.add-article-form textarea:focus {
+  outline: none;
+  border-color: #1a7f9e;
+  box-shadow: 0 0 0 3px rgba(26, 127, 158, 0.15);
+}
+
+.add-article-form textarea {
+  resize: vertical;
+  line-height: 1.6;
+}
+
+/* Sits under the field instead of on top of what you're typing */
+.char-count {
+  display: block;
+  text-align: right;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.add-article-form .file-label {
+  display: block;
+  cursor: pointer;
+  margin: 0;
+}
+
+.file-input:focus-visible + .file-label .upload-placeholder,
+.file-input:focus-visible + .file-label .image-preview {
+  outline: 2px solid #1a7f9e;
+  outline-offset: 2px;
+}
+
+.image-preview {
+  display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #d1d5db;
+}
+
+.upload-placeholder {
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #f9fafb;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.upload-placeholder:hover {
+  border-color: #1a7f9e;
+  background-color: #f0f9ff;
+}
+
+.upload-placeholder svg {
+  color: #9ca3af;
+  margin-bottom: 12px;
+}
+
+.upload-placeholder p {
+  font-weight: 500;
+  color: #374151;
+  margin: 0 0 4px;
+}
+
+.upload-placeholder span {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 20px 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-cancel,
+.btn-submit {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 1rem;
+}
+
+.btn-cancel {
+  background-color: #fff;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.btn-cancel:hover:not(:disabled) {
+  background-color: #f9fafb;
+}
+
+.btn-submit {
+  background-color: #1a7f9e;
+  color: #fff;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background-color: #156a84;
+}
+
+.btn-submit:disabled,
+.btn-cancel:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 968px) {
+  .add-article-form {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .add-article-page {
+    padding: 24px 16px;
+  }
+
+  .add-article-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .add-article-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .add-article-form .form-section {
+    padding: 20px;
+  }
+
+  .form-actions {
+    padding: 16px;
+  }
+
+  .btn-cancel,
+  .btn-submit {
+    flex: 1;
+  }
+}

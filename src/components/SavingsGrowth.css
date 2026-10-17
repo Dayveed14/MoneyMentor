@@ -1,0 +1,211 @@
+.growthCard {
+  position: relative;
+  background: #fff;
+  border-radius: 28px;
+  padding: 26px 26px 18px;
+  box-shadow: 0 30px 60px -30px rgba(15, 61, 51, 0.45), 0 0 0 1px var(--line);
+}
+
+.growthLabel {
+  font-size: 0.9rem;
+  color: var(--sage);
+}
+
+.growthTotal {
+  font-family: var(--display);
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 2px 0 6px;
+}
+
+.growthSplit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.paid {
+  background: var(--sage);
+}
+
+.dot.grown {
+  background: var(--growth);
+  margin-left: 8px;
+}
+
+.growthChart {
+  display: block;
+  width: 100%;
+  height: 170px;
+  margin: 18px 0 8px;
+  overflow: visible;
+}
+
+.gridLine {
+  stroke: var(--line);
+  stroke-dasharray: 3 5;
+}
+
+.paidArea {
+  fill: rgba(110, 135, 127, 0.14);
+}
+
+.paidLine {
+  fill: none;
+  stroke: var(--sage);
+  stroke-width: 2;
+  stroke-dasharray: 5 5;
+  vector-effect: non-scaling-stroke;
+}
+
+.valueLine {
+  fill: none;
+  stroke: var(--growth);
+  stroke-width: 3;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  /* draws itself once when the page loads */
+  stroke-dasharray: 1;
+  animation: drawLine 1.6s 0.3s ease-out both;
+}
+
+@keyframes drawLine {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+.growthControls {
+  display: grid;
+  gap: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.slider span {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+.slider strong {
+  color: var(--ink);
+}
+
+/* Custom range: green fill up to the thumb, soft track after it */
+.slider input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 24px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.slider input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 6px;
+  background: linear-gradient(to right, var(--growth) var(--fill, 50%), var(--mint-deep) var(--fill, 50%));
+}
+
+.slider input[type="range"]::-moz-range-track {
+  height: 6px;
+  border-radius: 6px;
+  background: var(--mint-deep);
+}
+
+.slider input[type="range"]::-moz-range-progress {
+  height: 6px;
+  border-radius: 6px;
+  background: var(--growth);
+}
+
+.slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -8px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--growth);
+  box-shadow: 0 2px 8px rgba(15, 61, 51, 0.25);
+  transition: transform 0.15s ease;
+}
+
+.slider input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--growth);
+}
+
+.slider input[type="range"]:active::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+
+.rateToggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 4px;
+  background: var(--paper);
+  border-radius: 12px;
+  border: 1px solid var(--line);
+}
+
+.rateToggle button {
+  padding: 9px 8px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.rateToggle button span {
+  color: var(--sage);
+  margin-left: 2px;
+}
+
+.rateToggle button.on {
+  background: var(--ink);
+  color: #fff;
+}
+
+.rateToggle button.on span {
+  color: var(--mint-deep);
+}
+
+.growthNote {
+  margin-top: 12px;
+  font-size: 0.74rem;
+  color: var(--sage);
+}
+
+@media (max-width: 480px) {
+  .growthCard {
+    padding: 20px 18px 14px;
+    border-radius: 22px;
+  }
+
+  .growthChart {
+    height: 130px;
+  }
+}

@@ -1,0 +1,198 @@
+.moneyCheck {
+  padding: 100px 0;
+}
+
+.checkInner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 64px;
+  align-items: center;
+}
+
+.checkIntro h2 {
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.checkIntro p {
+  line-height: 1.7;
+  max-width: 36ch;
+}
+
+.checkProgress {
+  display: flex;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.checkProgress span {
+  width: 44px;
+  height: 6px;
+  border-radius: 6px;
+  background: var(--line);
+  transition: background-color 0.3s ease;
+}
+
+.checkProgress span.current {
+  background: var(--coin);
+}
+
+.checkProgress span.filled {
+  background: var(--growth);
+}
+
+.checkCard {
+  background: #fff;
+  border-radius: 28px;
+  padding: 36px;
+  box-shadow: 0 0 0 1px var(--line), var(--shadow);
+  min-height: 360px;
+}
+
+.checkCount {
+  font-size: 0.85rem;
+  color: var(--sage);
+  margin-bottom: 10px;
+}
+
+.checkCard h3 {
+  font-size: 1.35rem;
+  font-weight: 650;
+  line-height: 1.35;
+  margin-bottom: 22px;
+}
+
+.checkOptions {
+  display: grid;
+  gap: 10px;
+}
+
+.checkOpt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 15px 18px;
+  border-radius: 14px;
+  border: 1.5px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.98rem;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.checkOpt:hover:not(:disabled) {
+  border-color: var(--teal);
+  background: #fff;
+}
+
+.checkOpt:disabled {
+  cursor: default;
+}
+
+.checkOpt svg {
+  flex-shrink: 0;
+  font-size: 1.4rem;
+}
+
+.checkOpt.right {
+  border-color: var(--growth);
+  background: #e6f6ee;
+}
+
+.checkOpt.right svg {
+  color: var(--growth);
+}
+
+.checkOpt.wrong {
+  border-color: #d9534f;
+  background: #fdeeee;
+}
+
+.checkOpt.wrong svg {
+  color: #c9302c;
+}
+
+.checkOpt.dim {
+  opacity: 0.5;
+}
+
+.checkWhy {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  animation: fadeUp 0.35s ease-out both;
+}
+
+.checkWhy p {
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.checkWhyRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.checkWhyRow a {
+  color: var(--teal);
+  font-weight: 500;
+  font-size: 0.92rem;
+}
+
+.checkWhyRow a:hover {
+  text-decoration: underline;
+}
+
+.checkResult {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.checkScore {
+  font-family: var(--display);
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--growth);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.checkResult p {
+  margin-bottom: 24px;
+}
+
+.checkActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .moneyCheck {
+    padding: 72px 0;
+  }
+
+  .checkInner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .checkCard {
+    padding: 26px 20px;
+    min-height: 0;
+  }
+
+  .checkWhyRow .btn {
+    width: 100%;
+  }
+}

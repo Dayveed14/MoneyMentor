@@ -1,0 +1,123 @@
+.aboutSection {
+  position: relative;
+  padding: 100px 0;
+  background:
+    radial-gradient(circle at 12% 30%, rgba(147, 227, 170, 0.45), transparent 28%),
+    radial-gradient(circle at 30% 75%, rgba(81, 136, 204, 0.25), transparent 26%),
+    var(--paper);
+}
+
+.aboutInner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 72px;
+  align-items: center;
+}
+
+.aboutArches {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: end;
+}
+
+.arch {
+  border-radius: var(--radius-arch);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.arch img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.archTall {
+  aspect-ratio: 3 / 5;
+}
+
+.archShort {
+  aspect-ratio: 3 / 4;
+  margin-bottom: 40px;
+}
+
+.aboutCopy h2 {
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.aboutCopy > p {
+  line-height: 1.75;
+  max-width: 60ch;
+}
+
+.aboutPillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 36px;
+}
+
+.aboutPillars > div {
+  padding: 22px;
+  border-radius: 20px;
+}
+
+.aboutPillars > div:first-child {
+  background: var(--sage);
+  color: #eef6f1;
+}
+
+.aboutPillars > div:first-child h3 {
+  color: #fff;
+}
+
+.aboutPillars > div:last-child {
+  background: var(--mint);
+  border: 1px solid rgba(110, 135, 127, 0.4);
+}
+
+.pillarIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+
+.aboutPillars h3 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+.aboutPillars p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 960px) {
+  .aboutSection {
+    padding: 72px 0;
+  }
+
+  .aboutInner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+
+  .aboutArches {
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 520px) {
+  .aboutPillars {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

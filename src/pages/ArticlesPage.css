@@ -1,0 +1,211 @@
+.articlesHero {
+  background: var(--mint);
+  padding: 64px 0 36px;
+  border-bottom: 1px solid var(--line);
+}
+
+.articlesHero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 800;
+}
+
+.articlesHero > .wrap > p {
+  margin: 10px 0 28px;
+  max-width: 52ch;
+  line-height: 1.6;
+}
+
+.articleSearch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 520px;
+  padding: 0 8px 0 18px;
+  background: #fff;
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px var(--line);
+  color: var(--sage);
+  font-size: 1.2rem;
+}
+
+.articleSearch:focus-within {
+  box-shadow: 0 0 0 2px var(--teal);
+}
+
+.articleSearch input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.articleSearch input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.articleSearch button {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.chipRow {
+  display: flex;
+  gap: 8px;
+  margin-top: 22px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scrollbar-width: none;
+  /* soft fade on the right shows there are more topics to scroll to */
+  -webkit-mask-image: linear-gradient(to right, #000 88%, transparent);
+  mask-image: linear-gradient(to right, #000 88%, transparent);
+}
+
+.chipRow::-webkit-scrollbar {
+  display: none;
+}
+
+.chip {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 61, 51, 0.2);
+  background: transparent;
+  color: var(--ink);
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.chip:hover {
+  border-color: var(--ink);
+}
+
+.chip.on {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+.articlesResults {
+  padding: 48px 0 100px;
+  scroll-margin-top: 80px;
+}
+
+.resultsNote {
+  margin-bottom: 22px;
+  color: var(--ink-soft);
+}
+
+.resultsNote strong {
+  color: var(--ink);
+}
+
+.featureSlot {
+  margin-bottom: 28px;
+}
+
+.articlesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+}
+
+.resultsState {
+  text-align: center;
+  padding: 72px 24px;
+  border-radius: 24px;
+  background: #fff;
+  border: 1px dashed rgba(15, 61, 51, 0.25);
+}
+
+.resultsState h2 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.resultsState p {
+  margin-bottom: 20px;
+}
+
+.pager {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 56px;
+  flex-wrap: wrap;
+}
+
+.pager > button,
+.pagerNums button {
+  min-width: 44px;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.pager > button:hover:not(:disabled),
+.pagerNums button:hover {
+  border-color: var(--ink);
+}
+
+.pager > button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagerNums {
+  display: flex;
+  gap: 6px;
+}
+
+.pagerNums button {
+  padding: 0;
+}
+
+.pagerNums button.on {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+@media (max-width: 960px) {
+  .articlesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .articlesHero {
+    padding: 44px 0 26px;
+  }
+
+  .articlesGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .articlesResults {
+    padding: 32px 0 72px;
+  }
+
+  .articleSearch input {
+    font-size: 16px;
+  }
+}

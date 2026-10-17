@@ -1,0 +1,148 @@
+/* ===== Design tokens ===== */
+:root {
+  --ink: #0f3d33;        /* deep ledger green — headings, dark bands */
+  --ink-soft: #3d5a52;   /* body text */
+  --mint: #def6e5;       /* brand base */
+  --mint-deep: #c4ecd2;
+  --paper: #f8fbf8;      /* page background */
+  --sage: #6e877f;
+  --growth: #3f9d7c;     /* positive numbers, growth curve */
+  --teal: #0b8bb5;       /* primary action */
+  --teal-dark: #08739a;
+  --coin: #e8b54a;       /* sparing "money" highlight */
+  --line: rgba(15, 61, 51, 0.12);
+  --display: "Bricolage Grotesque Variable", "Poppins", sans-serif;
+  --body: "Poppins", system-ui, sans-serif;
+  --radius-arch: 999px 999px 24px 24px;
+  --shadow: 0 18px 40px -18px rgba(15, 61, 51, 0.35);
+}
+
+/* ===== Global base styles ===== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--body);
+  color: var(--ink-soft);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Form controls don't inherit the page font by default */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--display);
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+.wrap {
+  width: min(1200px, 100% - 40px);
+  margin-inline: auto;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  font-weight: 600;
+  font-size: 0.98rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-solid {
+  background: var(--teal);
+  color: #fff;
+}
+
+.btn-solid:hover {
+  background: var(--teal-dark);
+}
+
+.btn-ghost {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.btn-ghost:hover {
+  background: var(--ink);
+  color: #fff;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Visible keyboard focus everywhere, invisible for mouse clicks */
+:focus-visible {
+  outline: 2px solid #0b8bb5;
+  outline-offset: 2px;
+}
+
+/* Slide-up entrance (replaces framer-motion) */
+.fade-up {
+  animation: fadeUp 0.8s ease-out both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Shown briefly while admin pages load */
+.page-loader {
+  min-height: 100vh;
+  background: #f5f5f5;
+}

@@ -1,0 +1,140 @@
+.modulesBand {
+  background: var(--sage);
+  padding: 96px 0 110px;
+  scroll-margin-top: 60px;
+  color: #eef6f1;
+}
+
+.modulesHead {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: end;
+  margin-bottom: 56px;
+}
+
+.modulesHead h2 {
+  color: #fff;
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  font-weight: 700;
+  max-width: 16ch;
+}
+
+.modulesHead > p {
+  line-height: 1.7;
+  max-width: 46ch;
+}
+
+.kickerLight {
+  color: var(--mint);
+}
+
+.moduleCards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.moduleCard {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  color: var(--ink-soft);
+  border-radius: 999px 999px 28px 28px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.moduleCard:hover,
+.moduleCard:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 50px -28px rgba(0, 0, 0, 0.6);
+}
+
+.moduleImg {
+  aspect-ratio: 1 / 0.82;
+  overflow: hidden;
+  border-radius: 999px 999px 0 0;
+}
+
+.moduleImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.moduleCard:hover .moduleImg img {
+  transform: scale(1.06);
+}
+
+.moduleBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 26px 28px;
+}
+
+.moduleBody h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.moduleBody > p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.moduleBody ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 18px 0 22px;
+}
+
+.moduleBody li {
+  font-size: 0.78rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--mint);
+  color: var(--ink);
+}
+
+.moduleLink {
+  margin-top: auto;
+  font-weight: 600;
+  color: var(--teal);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.moduleLink::after {
+  content: "";
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.25s ease;
+}
+
+.moduleCard:hover .moduleLink::after {
+  width: 30px;
+}
+
+@media (max-width: 960px) {
+  .modulesBand {
+    padding: 72px 0 80px;
+  }
+
+  .modulesHead {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .moduleCards {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}

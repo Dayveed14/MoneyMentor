@@ -1,0 +1,159 @@
+.mainBanner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  background-color: #def6e5;
+  padding: 0 100px;
+}
+
+.bannerLeft {
+  flex: 1 1 55%;
+}
+
+.bannerLeft p {
+  max-width: 520px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.bannerImg {
+  flex: 1 1 45%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bannerImg img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.herotext {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 0.6em;
+}
+
+.herotext span.herotextword {
+  color: #4ca789;
+}
+
+.bannerLink {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.bannerLink a {
+  color: #000;
+  font-weight: bold;
+}
+
+.bannerLink a.first {
+  background-color: #0b0b0b;
+  padding: 10px 30px;
+  border-radius: 20px;
+  color: #fff;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.bannerLink a.first:hover {
+  background-color: #0b8bb5;
+  transform: translateY(-1px);
+}
+
+.bannerLink a.last {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.bannerLink .arrow {
+  font-size: 64px;
+  transition: transform 0.2s ease;
+}
+
+.bannerLink a.last:hover .arrow {
+  transform: translateX(6px);
+}
+
+@media (max-width: 1024px) {
+  .mainBanner {
+    padding: 30px 40px;
+    gap: 30px;
+  }
+
+  .herotext {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainBanner {
+    flex-direction: column;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .bannerLeft,
+  .bannerImg {
+    width: 100%;
+  }
+
+  .bannerLeft p {
+    margin: 0 auto 28px;
+  }
+
+  .bannerImg {
+    justify-content: center;
+  }
+
+  .bannerImg img {
+    width: 80%;
+    max-width: 400px;
+  }
+
+  .herotext {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .bannerLink {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .bannerLink a.first {
+    padding: 12px 28px;
+  }
+
+  .bannerLink a.last {
+    gap: 10px;
+  }
+
+  .bannerLink .arrow {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainBanner {
+    padding: 30px 16px;
+  }
+
+  .herotext {
+    font-size: 28px;
+  }
+
+  .bannerLeft p {
+    font-size: 14px;
+  }
+
+  .bannerImg img {
+    width: 100%;
+  }
+}

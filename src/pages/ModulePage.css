@@ -1,0 +1,255 @@
+/* Shared by Modules, Savings, Budget and FinLit101 */
+
+.savings-btn {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.savingsButton {
+  display: inline-block;
+  border-radius: 30px;
+  padding: 18px 50px;
+  background-color: var(--teal);
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.savingsButton:hover {
+  background-color: #097396;
+  transform: translateY(-1px);
+}
+
+.moduleContent {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.moduleContent:last-child {
+  border-bottom: none;
+}
+
+.expandedContent {
+  background-color: #fff;
+  padding: 20px 0 60px;
+  animation: fadeUp 0.5s ease-out both;
+}
+
+.centeredTextSection {
+  width: 80%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.centeredText {
+  font-size: 22px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+
+.tipsSection {
+  display: flex;
+  background: linear-gradient(to right, var(--mint-deep), #fff);
+  padding: 80px 0;
+}
+
+.tipsContent {
+  width: 50%;
+  padding: 60px;
+}
+
+.tipsTitle {
+  font-size: 42px;
+  font-weight: bold;
+  color: var(--ink);
+  margin: 0 0 24px 0;
+}
+
+.tipsText {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+
+.imageTextSection {
+  padding: 80px 0;
+  background: linear-gradient(to left, var(--mint), #fff);
+}
+
+.imageTextWrapper {
+  width: 90%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  padding: 0 48px;
+}
+
+/* Alternate image left / right without reordering the markup */
+.imageTextWrapper.reverse {
+  flex-direction: row-reverse;
+}
+
+.leftImageContainer,
+.rightTextContainer {
+  flex: 1;
+}
+
+.sectionImage {
+  display: block;
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.sectionHeading {
+  font-size: 36px;
+  font-weight: bold;
+  color: var(--ink);
+  margin: 0 0 20px 0;
+}
+
+.sectionText {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 1024px) {
+  .tipsContent {
+    width: 75%;
+  }
+
+  .imageTextWrapper {
+    gap: 40px;
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .centeredTextSection {
+    width: 100%;
+  }
+
+  .centeredText {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .savings-btn {
+    margin: 30px 0;
+  }
+
+  .savingsButton {
+    padding: 14px 32px;
+    font-size: 0.95rem;
+  }
+
+  .tipsSection,
+  .imageTextSection {
+    padding: 48px 0;
+  }
+
+  .tipsContent {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .tipsTitle {
+    font-size: 28px;
+  }
+
+  .tipsText,
+  .sectionText {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .imageTextWrapper,
+  .imageTextWrapper.reverse {
+    width: 100%;
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 20px;
+  }
+
+  .sectionImage {
+    height: 260px;
+  }
+
+  .sectionHeading {
+    font-size: 26px;
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .centeredText {
+    font-size: 15px;
+  }
+}
+
+/* "Other modules" strip at the bottom of each module page */
+.moduleNext {
+  background: var(--sage);
+  padding: 64px 0 72px;
+}
+
+.moduleNext h2 {
+  color: #fff;
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+}
+
+.moduleNextGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.moduleNextCard {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 14px;
+  background: #fff;
+  border-radius: 20px;
+  transition: transform 0.25s ease;
+}
+
+.moduleNextCard:hover {
+  transform: translateY(-3px);
+}
+
+.moduleNextCard img {
+  width: 84px;
+  height: 84px;
+  object-fit: cover;
+  border-radius: 999px 999px 14px 14px;
+  flex-shrink: 0;
+}
+
+.moduleNextCard strong {
+  display: block;
+  font-family: var(--display);
+  color: var(--ink);
+  font-size: 1.1rem;
+}
+
+.moduleNextCard span {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 700px) {
+  .moduleNextGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

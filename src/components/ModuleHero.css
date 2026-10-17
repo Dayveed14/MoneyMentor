@@ -1,0 +1,188 @@
+.savingsContainer {
+  padding: 48px;
+  background: linear-gradient(180deg, var(--mint) 0%, var(--paper) 100%);
+}
+
+.moduleCrumb {
+  display: flex;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--sage);
+  margin: 0 0 14px 50px;
+}
+
+.moduleCrumb a {
+  color: var(--teal);
+  font-weight: 500;
+}
+
+.moduleCrumb a:hover {
+  text-decoration: underline;
+}
+
+.savingsWrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.savingsTitle {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--ink);
+  margin: 0 0 70px 50px;
+}
+
+.savingsContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 40px;
+}
+
+.imageContainer {
+  position: relative;
+  flex-shrink: 0;
+  margin-top: 26px; /* room for the offset frame */
+}
+
+.backgroundBox {
+  position: absolute;
+  top: -26px;
+  left: 26px;
+  right: -26px;
+  bottom: 26px;
+  background-color: var(--mint-deep);
+  border: 3px solid var(--ink);
+  border-radius: 24px;
+  z-index: 0;
+}
+
+.savingsImage {
+  position: relative;
+  display: block;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.textContainer {
+  width: 50%;
+}
+
+.textContainer2 {
+  width: 60%;
+}
+
+.savingsQuote {
+  font-family: var(--display);
+  font-size: 46px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+/* Long intro paragraph (FinLit) — 48px was far too big for 4 sentences */
+.savingsQuote2 {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+@media (max-width: 1024px) {
+  .savingsContainer {
+    padding: 40px 32px;
+  }
+
+  .savingsTitle {
+    margin: 0 0 50px 20px;
+  }
+
+  .moduleCrumb {
+    margin-left: 20px;
+  }
+
+  .savingsQuote {
+    font-size: 34px;
+  }
+
+  .savingsQuote2 {
+    font-size: 22px;
+  }
+
+  .textContainer {
+    width: 60%;
+  }
+}
+
+@media (max-width: 768px) {
+  .savingsContainer {
+    padding: 30px 16px;
+  }
+
+  .savingsTitle {
+    font-size: 28px;
+    margin: 0 0 30px;
+    text-align: center;
+  }
+
+  .moduleCrumb {
+    justify-content: center;
+    margin-left: 0;
+  }
+
+  .savingsContent {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .imageContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+  }
+
+  .savingsImage {
+    width: 90%;
+    max-width: 350px;
+  }
+
+  .backgroundBox {
+    display: none;
+  }
+
+  .textContainer,
+  .textContainer2 {
+    width: 100%;
+    text-align: center;
+  }
+
+  .savingsQuote {
+    font-size: 24px;
+  }
+
+  .savingsQuote2 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .savingsTitle {
+    font-size: 20px;
+  }
+
+  .savingsQuote {
+    font-size: 20px;
+  }
+
+  .savingsQuote2 {
+    font-size: 16px;
+  }
+
+  .savingsImage {
+    width: 100%;
+  }
+}

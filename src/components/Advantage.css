@@ -1,0 +1,103 @@
+.advantage {
+  padding: 96px 0;
+}
+
+.advantageInner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+  gap: 72px;
+  align-items: start;
+}
+
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--teal);
+  margin-bottom: 14px;
+}
+
+.kicker::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  background: currentColor;
+}
+
+.advantageIntro {
+  position: sticky;
+  top: 110px;
+}
+
+.advantageIntro h2 {
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.advantageIntro p:last-child {
+  line-height: 1.7;
+  max-width: 40ch;
+}
+
+.advantageList {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 48px;
+}
+
+.advantageList li {
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+}
+
+.advIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: var(--mint);
+  color: var(--teal);
+  font-size: 24px;
+  margin-bottom: 18px;
+}
+
+.advantageList h3 {
+  font-size: 1.2rem;
+  font-weight: 650;
+  margin-bottom: 8px;
+}
+
+.advantageList p {
+  line-height: 1.65;
+  font-size: 0.96rem;
+}
+
+@media (max-width: 900px) {
+  .advantage {
+    padding: 64px 0;
+  }
+
+  .advantageInner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .advantageIntro {
+    position: static;
+  }
+}
+
+@media (max-width: 560px) {
+  .advantageList {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .advantageList li {
+    padding: 22px 0;
+  }
+}
