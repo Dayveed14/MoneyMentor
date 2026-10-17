@@ -20,6 +20,15 @@ import NotFound from "./pages/NotFound";
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const AddArticle = lazy(() => import("./pages/AddArticle"));
 
+// Learner area (logged-in users)
+const AccountLayout = lazy(() => import("./pages/account/AccountLayout"));
+const Overview = lazy(() => import("./pages/account/Overview"));
+const MyModules = lazy(() => import("./pages/account/MyModules"));
+const BudgetPlanner = lazy(() => import("./pages/account/BudgetPlanner"));
+const SavedArticles = lazy(() => import("./pages/account/SavedArticles"));
+const Settings = lazy(() => import("./pages/account/Settings"));
+const Learn = lazy(() => import("./pages/Learn"));
+
 function App() {
   return (
     <BrowserRouter>
@@ -39,6 +48,19 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/contactUs" element={<ContactUs />} />
+
+            {/* Any logged-in user */}
+            <Route element={<PrivateRoute />}>
+              <Route path="/account" element={<AccountLayout />}>
+                <Route index element={<Overview />} />
+                <Route path="modules" element={<MyModules />} />
+                <Route path="budget" element={<BudgetPlanner />} />
+                <Route path="saved" element={<SavedArticles />} />
+                <Route path="settings" element={<Settings />} />
+              </Route>
+              <Route path="/learn/:moduleId" element={<Learn />} />
+            </Route>
+
             <Route path="*" element={<NotFound />} />
           </Route>
 

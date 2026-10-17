@@ -1,8 +1,24 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import Guilloche from "./Guilloche";
 import "./CtaBand.css";
 
 function CtaBand() {
+  const { user } = useAuth();
+  if (user) {
+    return (
+      <section className="ctaBand">
+        <Guilloche className="ctaPattern" />
+        <div className="wrap ctaInner">
+          <h2>Pick up where you left off</h2>
+          <p>Your lessons, budget and saved articles are waiting in your dashboard.</p>
+          <div className="ctaActions">
+            <Link to="/account" className="btn ctaBtn">Open my dashboard</Link>
+          </div>
+        </div>
+      </section>
+    );
+  }
   return (
     <section className="ctaBand">
       <Guilloche className="ctaPattern" />

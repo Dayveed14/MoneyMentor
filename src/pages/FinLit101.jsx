@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import ModuleHero from "../components/ModuleHero";
 import ModuleNext from "../components/ModuleNext";
 import finlitImg from "../assets/images/finlit.webp";
@@ -39,6 +41,7 @@ const threats = [
 
 function FinLit101() {
   const [showMore, setShowMore] = useState(false);
+  const { user } = useAuth();
 
   return (
     <>
@@ -52,13 +55,16 @@ function FinLit101() {
       />
 
       <div className="savings-btn">
+        <Link to={user ? "/learn/finlit" : "/signup"} className="savingsButton">
+          {user ? "Start the lessons" : "Sign up to start the lessons"}
+        </Link>
         <button
           type="button"
           onClick={() => setShowMore((prev) => !prev)}
-          className="savingsButton"
+          className="savingsButton savingsButtonGhost"
           aria-expanded={showMore}
           aria-controls="finlit-more">
-          {showMore ? "Show less" : "Get started"}
+          {showMore ? "Show less" : "Read the overview"}
         </button>
       </div>
 

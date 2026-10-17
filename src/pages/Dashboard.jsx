@@ -3,10 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   FiGrid, FiUsers, FiFileText, FiBookOpen, FiHelpCircle, FiAward,
   FiDollarSign, FiMessageSquare, FiTv, FiLogOut, FiPlus, FiHome, FiClock,
-  FiEye, FiMail, FiRefreshCw,
+  FiMail, FiRefreshCw,
 } from "react-icons/fi";
 import { apiFetch, apiPost } from "../config/api";
-import { clearSession, getUser } from "../utils/auth";
+import { getUser } from "../utils/auth";
+import { useAuth } from "../context/AuthContext";
 import "./Dashboard.css";
 
 const TABS = [
@@ -87,8 +88,8 @@ function Overview() {
   const s = data.stats;
   const cards = [
     { label: "Total users", value: s.users_total, change: `+${s.users_last_30_days} in the last 30 days`, color: "blue", icon: FiUsers, positive: s.users_last_30_days > 0 },
-    { label: "Published articles", value: s.articles_published, change: `${s.articles_draft} draft${s.articles_draft === 1 ? "" : "s"} waiting`, color: "green", icon: FiFileText },
-    { label: "Article views", value: s.views_total, change: "All time", color: "purple", icon: FiEye },
+    { label: "Published articles", value: s.articles_published, change: `${s.articles_draft} draft${s.articles_draft === 1 ? "" : "s"}, ${Number(s.views_total).toLocaleString()} views`, color: "green", icon: FiFileText },
+    { label: "Lessons completed", value: s.lessons_completed ?? 0, change: `${s.quiz_attempts ?? 0} quiz attempts, ${s.active_learners ?? 0} active this month`, color: "purple", icon: FiAward },
     { label: "Newsletter subscribers", value: s.subscribers_total, change: `${s.messages_unread} unread contact message${s.messages_unread === 1 ? "" : "s"}`, color: "orange", icon: FiMail },
   ];
   return (
@@ -258,8 +259,9 @@ const Dashboard = () => {
   const user = getUser();
   const tab = TABS.find((t) => t.id === activeTab);
 
+  const { logout } = useAuth();
   const handleLogout = () => {
-    clearSession();
+    logout();
     navigate("/login", { replace: true });
   };
 

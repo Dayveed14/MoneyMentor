@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import ModuleHero from "../components/ModuleHero";
 import ModuleNext from "../components/ModuleNext";
 import savingsImg from "../assets/images/savings.webp";
@@ -8,6 +10,7 @@ import "./ModulePage.css";
 
 function Savings() {
   const [showMore, setShowMore] = useState(false);
+  const { user } = useAuth();
 
   return (
     <>
@@ -20,13 +23,16 @@ function Savings() {
       />
 
       <div className="savings-btn">
+        <Link to={user ? "/learn/savings" : "/signup"} className="savingsButton">
+          {user ? "Start the lessons" : "Sign up to start the lessons"}
+        </Link>
         <button
           type="button"
           onClick={() => setShowMore((prev) => !prev)}
-          className="savingsButton"
+          className="savingsButton savingsButtonGhost"
           aria-expanded={showMore}
           aria-controls="savings-more">
-          {showMore ? "Show less" : "Get started"}
+          {showMore ? "Show less" : "Read the overview"}
         </button>
       </div>
 

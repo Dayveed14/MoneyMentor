@@ -27,16 +27,40 @@ export const getToken = () => read(TOKEN_KEY);
 
 export const isAdmin = (user) => user?.role === "admin";
 
-export function saveSession(user, token, remember = false) {
-  clearSession();
-  const store = remember ? localStorage : sessionStorage;
-  store.setItem(USER_KEY, JSON.stringify(user));
-  store.setItem(TOKEN_KEY, token);
-}
+// Lets the rest of the app (navigation, dashboards) react to log in / log out
+export const AUTH_EVENT = "mm-auth-change";
+const announce = () => window.dispatchEvent(new Event(AUTH_EVENT));
 
-export function clearSession() {
+function wipe() {
   [localStorage, sessionStorage].forEach((store) => {
     store.removeItem(USER_KEY);
     store.removeItem(TOKEN_KEY);
   });
+}
+
+// True after the user chose to log out (vs. an expired token), so protected
+// pages send them home instead of to the login page.
+let manualLogout = false;
+export const loggedOutManually = () => manualLogout;
+
+export function saveSession(user, token, remember = false) {
+  manualLogout = false;
+  wipe();
+  const store = remember ? localStorage : sessionStorage;
+  store.setItem(USER_KEY, JSON.stringify(user));
+  store.setItem(TOKEN_KEY, token);
+  announce();
+}
+
+/** Update the stored user (e.g. after a name change) without touching the token. */
+export function updateStoredUser(user) {
+  const store = localStorage.getItem(TOKEN_KEY) ? localStorage : sessionStorage;
+  store.setItem(USER_KEY, JSON.stringify(user));
+  announce();
+}
+
+export function clearSession(manual = false) {
+  manualLogout = manual;
+  wipe();
+  announce();
 }

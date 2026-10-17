@@ -1,0 +1,348 @@
+.learn {
+  background: var(--paper);
+  padding: 36px 0 96px;
+  min-height: 70vh;
+}
+
+.learnGrid {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+.learnSide {
+  position: sticky;
+  top: 96px;
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.learnBack {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--teal);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.learnSide h1 {
+  font-size: 1.35rem;
+}
+
+.learnLessons {
+  list-style: none;
+  display: grid;
+  gap: 2px;
+  margin-top: 6px;
+}
+
+.learnLessons button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: none;
+  text-align: left;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.learnLessons button:hover {
+  background: var(--paper);
+}
+
+.learnLessons button.current {
+  background: var(--mint);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.lNum {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+  font-size: 0.78rem;
+  flex-shrink: 0;
+}
+
+.learnLessons button.done .lNum {
+  border-color: transparent;
+  color: var(--growth);
+  font-size: 1.45rem;
+}
+
+.learnOverview {
+  margin-top: 6px;
+  font-size: 0.88rem;
+  color: var(--sage);
+  text-decoration: underline;
+}
+
+.learnMain {
+  background: #fff;
+  border-radius: 26px;
+  padding: 44px 48px;
+  box-shadow: 0 0 0 1px var(--line);
+  min-height: 480px;
+}
+
+.learnEyebrow {
+  font-size: 0.88rem;
+  color: var(--growth);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.lesson h2 {
+  font-size: clamp(1.8rem, 3.6vw, 2.5rem);
+  font-weight: 800;
+  margin-bottom: 22px;
+}
+
+.lesson > p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #2c4740;
+  margin-bottom: 1.2em;
+  max-width: 66ch;
+}
+
+.takeaways {
+  margin: 28px 0 8px;
+  padding: 22px 24px;
+  border-radius: 18px;
+  background: var(--mint);
+  max-width: 66ch;
+}
+
+.takeaways h3 {
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+}
+
+.takeaways ul {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.takeaways li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  color: var(--ink);
+}
+
+.takeaways svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--growth);
+}
+
+.lessonNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.lessonNavRight {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Quiz */
+.quizHint {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #fff8e7;
+  color: var(--ink);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.quizMeta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  color: var(--sage);
+  margin-bottom: 10px;
+}
+
+.quizTrack {
+  height: 6px;
+  border-radius: 6px;
+  background: var(--mint-deep);
+  margin-bottom: 26px;
+  overflow: hidden;
+}
+
+.quizTrack span {
+  display: block;
+  height: 100%;
+  background: var(--coin);
+  transition: width 0.3s ease;
+}
+
+.quizBox h2 {
+  font-size: 1.5rem;
+  line-height: 1.35;
+  margin-bottom: 22px;
+}
+
+.quizOptions {
+  display: grid;
+  gap: 10px;
+}
+
+.quizOpt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1.5px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.quizOpt:hover:not(:disabled) {
+  border-color: var(--teal);
+  background: #fff;
+}
+
+.quizOpt:disabled {
+  cursor: default;
+}
+
+.quizOpt svg {
+  flex-shrink: 0;
+  font-size: 1.3rem;
+}
+
+.quizOpt.right {
+  border-color: var(--growth);
+  background: #e6f6ee;
+}
+
+.quizOpt.right svg {
+  color: var(--growth);
+}
+
+.quizOpt.wrong {
+  border-color: #d9534f;
+  background: #fdeeee;
+}
+
+.quizOpt.wrong svg {
+  color: #c9302c;
+}
+
+.quizOpt.dim {
+  opacity: 0.5;
+}
+
+.quizWhy {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 16px;
+  justify-items: start;
+}
+
+.quizWhy p {
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+.quizResult {
+  text-align: center;
+  padding: 30px 0;
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+}
+
+.quizScore {
+  font-family: var(--display);
+  font-size: 4.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.quizScore.pass {
+  color: var(--growth);
+}
+
+.quizScore.fail {
+  color: #c9302c;
+}
+
+.quizResult p {
+  max-width: 46ch;
+}
+
+.quizActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+@media (max-width: 900px) {
+  .learnGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .learnSide {
+    position: static;
+  }
+
+  .learnMain {
+    padding: 28px 22px;
+    border-radius: 20px;
+  }
+
+  .lesson > p {
+    font-size: 1.02rem;
+  }
+
+  .lessonNav .btn {
+    flex: 1;
+  }
+
+  .lessonNavRight {
+    width: 100%;
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+}

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import { HiCheck } from "react-icons/hi";
 import Guilloche from "./Guilloche";
 import SavingsGrowth from "./SavingsGrowth";
@@ -6,6 +7,7 @@ import bannerImg from "../assets/images/banner.webp";
 import "./Hero.css";
 
 function Hero() {
+  const { user } = useAuth();
   return (
     <section className="hero">
       <Guilloche className="heroPattern" />
@@ -18,8 +20,8 @@ function Hero() {
             compound.
           </p>
           <div className="heroActions">
-            <Link to="/signup" className="btn btn-solid">
-              Start learning free
+            <Link to={user ? "/account" : "/signup"} className="btn btn-solid">
+              {user ? "Go to my dashboard" : "Start learning free"}
             </Link>
             <Link to="/#modules" className="btn btn-ghost">
               Explore modules

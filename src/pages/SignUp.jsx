@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { apiPost } from "../config/api";
-import { saveSession } from "../utils/auth";
+import { useAuth } from "../context/AuthContext";
+import { getUser } from "../utils/auth";
 import "./AuthForms.css";
 
 const EMPTY_FORM = {
@@ -17,6 +18,8 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
+  const [alreadyIn] = useState(() => getUser()); // see Login.jsx
   const [formData, setFormData] = useState(EMPTY_FORM);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -60,9 +63,9 @@ const SignUp = () => {
 
       if (data.success) {
         // The API returns a session straight away, so there's no second login step
-        saveSession(data.user, data.token, true);
+        login(data.user, data.token, true);
         setFormData(EMPTY_FORM);
-        navigate("/", { replace: true, state: { welcome: data.user.name } });
+        navigate("/account", { replace: true, state: { welcome: data.user.name } });
       } else {
         setError(data.message || "Registration failed. Please try again.");
       }
@@ -73,6 +76,10 @@ const SignUp = () => {
       setLoading(false);
     }
   };
+
+  if (alreadyIn) {
+    return <Navigate to="/account" replace />;
+  }
 
   return (
     <div className="auth-page">

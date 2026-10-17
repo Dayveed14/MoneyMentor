@@ -146,3 +146,61 @@ img {
   min-height: 100vh;
   background: #f5f5f5;
 }
+
+/* ===== Shared bits used by the learner area ===== */
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 0.88rem;
+  border-width: 1.5px;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.muted {
+  color: var(--sage);
+  font-size: 0.92rem;
+}
+
+.bar {
+  height: 8px;
+  border-radius: 8px;
+  background: var(--mint-deep);
+  overflow: hidden;
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  border-radius: 8px;
+  background: var(--growth);
+  transition: width 0.5s ease;
+}
+
+.formOk,
+.formErr {
+  font-size: 0.92rem;
+  padding: 10px 14px;
+  border-radius: 10px;
+}
+
+.formOk {
+  background: #e6f6ee;
+  color: #11603f;
+}
+
+.formErr {
+  background: #fdeeee;
+  color: #a12622;
+}
+
+.linkBtn {
+  border: none;
+  background: none;
+  color: var(--sage);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+}

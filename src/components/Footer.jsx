@@ -5,9 +5,11 @@ import { AiFillInstagram } from "react-icons/ai";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import logo from "../assets/images/logo.png";
 import { apiPost } from "../config/api";
+import { useAuth } from "../context/AuthContext";
 import "./Footer.css";
 
 function Footer() {
+  const { user } = useAuth();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [error, setError] = useState("");
@@ -52,8 +54,14 @@ function Footer() {
           <h3>Know more</h3>
           <Link to="/#about">About</Link>
           <Link to="/contactUs">Contact us</Link>
-          <Link to="/login">Log in</Link>
-          <Link to="/signup">Sign up</Link>
+          {user ? (
+            <Link to="/account">My dashboard</Link>
+          ) : (
+            <>
+              <Link to="/login">Log in</Link>
+              <Link to="/signup">Sign up</Link>
+            </>
+          )}
         </nav>
 
         <div className="footerSub">

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import ModuleHero from "../components/ModuleHero";
 import ModuleNext from "../components/ModuleNext";
 import budgetingImg from "../assets/images/budgeting.webp";
@@ -6,6 +8,7 @@ import "./ModulePage.css";
 
 function Budget() {
   const [showMore, setShowMore] = useState(false);
+  const { user } = useAuth();
 
   return (
     <>
@@ -18,13 +21,16 @@ function Budget() {
       />
 
       <div className="savings-btn">
+        <Link to={user ? "/learn/budgeting" : "/signup"} className="savingsButton">
+          {user ? "Start the lessons" : "Sign up to start the lessons"}
+        </Link>
         <button
           type="button"
           onClick={() => setShowMore((prev) => !prev)}
-          className="savingsButton"
+          className="savingsButton savingsButtonGhost"
           aria-expanded={showMore}
           aria-controls="budget-more">
-          {showMore ? "Show less" : "Get started"}
+          {showMore ? "Show less" : "Read the overview"}
         </button>
       </div>
 

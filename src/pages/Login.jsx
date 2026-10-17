@@ -1,12 +1,18 @@
 import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { apiPost } from "../config/api";
-import { saveSession, isAdmin } from "../utils/auth";
+import { isAdmin } from "../utils/auth";
+import { useAuth } from "../context/AuthContext";
+import { getUser } from "../utils/auth";
 import "./AuthForms.css";
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { login } = useAuth();
+  // Only redirect people who arrive already logged in. After a fresh login the
+  // page briefly stays on screen while the dashboard loads; it mustn't redirect again.
+  const [alreadyIn] = useState(() => getUser());
   const [formData, setFormData] = useState({ email: "", password: "", remember: false });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -29,11 +35,12 @@ const Login = () => {
       });
 
       if (data.success) {
-        saveSession(data.user, data.token, formData.remember);
-        // Admins go to the dashboard; everyone else back to where they were (or home).
-        // Previously everyone was sent to /dashboard, which bounced normal users to /login.
+        login(data.user, data.token, formData.remember);
+        // Back to the page that asked them to log in, otherwise their own dashboard
+        const admin = isAdmin(data.user);
         const from = location.state?.from;
-        navigate(isAdmin(data.user) ? from || "/dashboard" : "/", { replace: true });
+        const allowed = from && (admin || !["/dashboard", "/addarticle"].includes(from));
+        navigate(allowed ? from : admin ? "/dashboard" : "/account", { replace: true });
       } else {
         setError(data.message || "Login failed. Please try again.");
       }
@@ -43,6 +50,11 @@ const Login = () => {
       setLoading(false);
     }
   };
+
+  // Already logged in? Go straight to the right dashboard
+  if (alreadyIn) {
+    return <Navigate to={isAdmin(alreadyIn) ? "/dashboard" : "/account"} replace />;
+  }
 
   return (
     <div className="auth-page">

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import { HiArrowLeft, HiLink, HiCheck } from "react-icons/hi";
+import { HiArrowLeft, HiLink, HiCheck, HiOutlineBookmark, HiBookmark } from "react-icons/hi";
+import { useAuth } from "../context/AuthContext";
+import { apiFetch, apiPost } from "../config/api";
 import { BsTwitterX, BsWhatsapp, BsFacebook } from "react-icons/bs";
 import {
   articleImage, FALLBACK_ARTICLE_IMG, fetchArticle, formatDate, readingTime, useArticles,
@@ -63,6 +65,50 @@ function ShareButtons({ title }) {
       <a href={`https://www.facebook.com/sharer/sharer.php?u=${enc(url)}`} target="_blank" rel="noreferrer" aria-label="Share on Facebook"><BsFacebook /></a>
       {copied && <em role="status">Link copied</em>}
     </div>
+  );
+}
+
+/** Save / unsave for logged-in readers; a nudge to log in for everyone else. */
+function SaveButton({ articleId }) {
+  const { user } = useAuth();
+  const location = useLocation();
+  const [saved, setSaved] = useState(false);
+  const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    if (!user) return;
+    apiFetch("api/saved_articles.php")
+      .then((r) => r.success && setSaved(r.data.some((a) => String(a.id) === String(articleId))))
+      .catch(() => {});
+  }, [user, articleId]);
+
+  if (!user) {
+    return (
+      <Link to="/login" state={{ from: location.pathname }} className="saveBtn" aria-label="Log in to save this article">
+        <HiOutlineBookmark />
+      </Link>
+    );
+  }
+
+  const toggle = async () => {
+    setBusy(true);
+    const next = !saved;
+    setSaved(next);
+    try {
+      const res = await apiPost("api/saved_articles.php", { article_id: Number(articleId), saved: next });
+      if (!res.success) setSaved(!next);
+    } catch {
+      setSaved(!next);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <button type="button" className={`saveBtn ${saved ? "on" : ""}`} onClick={toggle} disabled={busy}
+      aria-pressed={saved} aria-label={saved ? "Remove from saved articles" : "Save this article"}>
+      {saved ? <HiBookmark /> : <HiOutlineBookmark />}
+    </button>
   );
 }
 
@@ -179,7 +225,13 @@ function ArticleDetail() {
 
         <div className="wrap articleLayout">
           <aside className="articleAside">
-            <ShareButtons title={article.title} />
+            <div className="asideStack">
+              <div className="shareRow">
+                <span>Save</span>
+                <SaveButton articleId={article.id} />
+              </div>
+              <ShareButtons title={article.title} />
+            </div>
           </aside>
 
           <div className="articleBody" id="article-body">

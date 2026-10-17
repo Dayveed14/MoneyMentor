@@ -35,6 +35,23 @@ Framework preset: **Vite**, output directory: **dist**. Set `VITE_API_URL` to th
 Render API URL. `vercel.json` only adds the SPA fallback so refreshing `/modules`
 etc. doesn't 404.
 
+## Learner area (logged-in users)
+| Route | What |
+|---|---|
+| `/account` | Dashboard: progress ring, next lesson, module progress, budget snapshot, saved articles, badges |
+| `/account/modules` | Every lesson and quiz, with what's done |
+| `/learn/:moduleId?lesson=…` / `?step=quiz` | Lesson reader and module quiz (pass mark 80%) |
+| `/account/budget` | Budget planner compared with 50/30/20 |
+| `/account/saved` | Saved articles |
+| `/account/settings` | Change name / password, log out |
+
+Course content lives in `src/data/modules.js`. Lesson ids there must match
+`src/modules.php` in the API, which only saves progress for known ids. Badges are
+worked out from progress in `src/lib/achievements.js`.
+
+Login sends admins to `/dashboard` and everyone else to `/account` (or back to the
+page that asked them to log in). Log-in state lives in `src/context/AuthContext.jsx`.
+
 ## Navigation
 Home, Modules, Articles and About scroll to their section on the home page
 (`/#modules`, `/#articles`, `/#about`) and highlight as you scroll. From any

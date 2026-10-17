@@ -283,3 +283,146 @@
     transform: rotate(180deg);
   }
 }
+
+/* ===== Account menu ===== */
+.navAccount {
+  position: relative;
+  margin-left: 10px;
+}
+
+.navAccountBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 5px 5px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.navAccountBtn:hover,
+.navAccount.open .navAccountBtn {
+  border-color: var(--ink);
+}
+
+.navAvatar {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+}
+
+.navAccountMenu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  width: 250px;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+}
+
+.navAccount.open .navAccountMenu {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.navAccountWho {
+  padding: 10px 12px 12px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+.navAccountWho strong {
+  display: block;
+  color: var(--ink);
+}
+
+.navAccountWho span {
+  font-size: 0.82rem;
+  color: var(--sage);
+  overflow-wrap: anywhere;
+}
+
+.navAccountMenu a,
+.navLogout {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 10px;
+  background: none;
+  text-align: left;
+  color: var(--ink);
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.navAccountMenu a:hover,
+.navLogout:hover {
+  background: var(--mint);
+}
+
+.navLogout {
+  color: #b42318;
+  margin-top: 4px;
+  border-top: 1px solid var(--line);
+  border-radius: 0 0 10px 10px;
+}
+
+.navLogin {
+  margin-left: 6px;
+}
+
+@media (max-width: 860px) {
+  .navAccount {
+    margin: 14px 0 0;
+  }
+
+  .navAccountBtn {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .navAccountBtn svg {
+    margin-left: auto;
+  }
+
+  /* On phones the account links show inline under the button */
+  .navAccountMenu {
+    position: static;
+    width: auto;
+    display: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    padding: 6px 0 0;
+  }
+
+  .navAccount.open .navAccountMenu {
+    display: block;
+  }
+
+  .navLogin {
+    margin-left: 0;
+  }
+}

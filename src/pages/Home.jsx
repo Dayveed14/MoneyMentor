@@ -1,4 +1,3 @@
-import WelcomeBanner from "../components/WelcomeBanner";
 import Hero from "../components/Hero";
 import Advantage from "../components/Advantage";
 import ModulesShowcase from "../components/ModulesShowcase";
@@ -10,7 +9,6 @@ import CtaBand from "../components/CtaBand";
 function Home() {
   return (
     <>
-      <WelcomeBanner />
       <Hero />
       <Advantage />
       <ModulesShowcase />
