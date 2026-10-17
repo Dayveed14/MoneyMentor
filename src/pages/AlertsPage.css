@@ -1,0 +1,57 @@
+.alertsHero {
+  background: var(--mint);
+  padding: 56px 0 72px;
+}
+
+.alertsHeroInner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.alertsHero h1 {
+  font-size: clamp(2.3rem, 5vw, 3.6rem);
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.alertsHero > .wrap > div > p {
+  line-height: 1.7;
+  max-width: 46ch;
+}
+
+.alreadyBox {
+  margin-top: 28px;
+  padding: 22px;
+  border-radius: 20px;
+  background: #fff;
+  border-left: 6px solid #d9534f;
+}
+
+.alreadyBox h2 {
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+}
+
+.alreadyBox ol {
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+  font-size: 0.94rem;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.alreadyBox a {
+  color: var(--teal);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+@media (max-width: 960px) {
+  .alertsHeroInner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+}

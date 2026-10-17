@@ -1,0 +1,58 @@
+.askBand {
+  background: var(--coin);
+  padding: 56px 0;
+}
+
+.askInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+}
+
+.askBand h2 {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 800;
+  margin-bottom: 8px;
+  max-width: 22ch;
+}
+
+.askBand p {
+  color: #3b3010;
+  max-width: 58ch;
+  line-height: 1.6;
+}
+
+.askActions {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.askBtn {
+  background: var(--ink);
+  color: #fff;
+}
+
+.askBtn:hover {
+  background: #1a5a4b;
+}
+
+.askLink {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: underline;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 800px) {
+  .askInner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .askActions {
+    justify-items: start;
+  }
+}

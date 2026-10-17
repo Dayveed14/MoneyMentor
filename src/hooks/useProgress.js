@@ -73,10 +73,25 @@ export function moduleStats(module, progress) {
   };
 }
 
-/** The next thing the learner should do, across all modules. */
-export function nextStep(progress) {
-  for (const m of MODULES) {
+/** Modules in the learner's personal order (from the knowledge check), else the default order. */
+export function orderedModules(path) {
+  const order = path?.modules || [];
+  return [...MODULES].sort((a, b) => {
+    const ia = order.indexOf(a.id), ib = order.indexOf(b.id);
+    return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+  });
+}
+
+/**
+ * The next thing the learner should do: follows their path, and inside each
+ * module starts with the key lessons the knowledge check flagged.
+ */
+export function nextStep(progress, path) {
+  const keys = path?.key_lessons || [];
+  for (const m of orderedModules(path)) {
     const s = moduleStats(m, progress);
+    const key = keys.find((k) => k.module === m.id && !s.done.has(k.lesson));
+    if (key) return { module: m, lesson: m.lessons.find((l) => l.id === key.lesson), type: "lesson", key: true };
     if (s.nextLesson) return { module: m, lesson: s.nextLesson, type: "lesson" };
     if (!s.quizPassed) return { module: m, type: "quiz" };
   }

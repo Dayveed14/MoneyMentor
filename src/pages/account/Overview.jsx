@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HiCheck, HiLockClosed } from "react-icons/hi";
 import { useAuth } from "../../context/AuthContext";
-import { useProgress, moduleStats, nextStep } from "../../hooks/useProgress";
+import { useProgress, moduleStats, nextStep, orderedModules } from "../../hooks/useProgress";
+import { useAssessment } from "../../hooks/useAssessment";
+import { TOPICS } from "../../data/assessment";
 import { MODULES, TOTAL_LESSONS } from "../../data/modules";
 import { achievements } from "../../lib/achievements";
 import { apiFetch } from "../../config/api";
@@ -18,6 +20,9 @@ function greeting() {
 function Overview() {
   const { user } = useAuth();
   const { progress, loading, error, reload } = useProgress();
+  const { assessment, loading: checkLoading } = useAssessment();
+  const path = assessment?.path;
+  const keySet = new Set((path?.key_lessons || []).map((k) => k.lesson));
   const [budget, setBudget] = useState(null);
   const [saved, setSaved] = useState([]);
 
@@ -27,7 +32,7 @@ function Overview() {
   }, []);
 
   const lessonsDone = MODULES.reduce((n, m) => n + moduleStats(m, progress).completed, 0);
-  const step = nextStep(progress);
+  const step = nextStep(progress, path);
   const badges = achievements(progress, { hasBudget: Boolean(budget), savedCount: saved.length });
   const earned = badges.filter((b) => b.earned).length;
 
@@ -43,6 +48,16 @@ function Overview() {
         </div>
       </header>
 
+      {!checkLoading && !assessment && (
+        <section className="checkPrompt">
+          <div>
+            <h2>Get a learning path made for you</h2>
+            <p>Take the two-minute knowledge check and we&apos;ll put the modules you need most first.</p>
+          </div>
+          <Link to="/account/check" className="btn ctaBtnDark">Take the check</Link>
+        </section>
+      )}
+
       {error && (
         <div className="accError" role="alert">
           {error} <button type="button" onClick={reload}>Try again</button>
@@ -54,7 +69,9 @@ function Overview() {
         <div className="continueText">
           {step ? (
             <>
-              <p className="continueEyebrow">{lessonsDone === 0 ? "Start here" : "Up next"}</p>
+              <p className="continueEyebrow">
+                {step.key ? "Key lesson for you" : lessonsDone === 0 ? "Start here" : "Up next"}
+              </p>
               <h2>{step.type === "quiz" ? `${step.module.title} quiz` : step.lesson.title}</h2>
               <p>
                 {step.type === "quiz"
@@ -79,17 +96,33 @@ function Overview() {
       <div className="accGrid">
         <section className="accPanel">
           <div className="panelHead">
-            <h2>Your modules</h2>
+            <h2>{path ? "Your learning path" : "Your modules"}</h2>
             <Link to="/account/modules">See all lessons</Link>
           </div>
+          {assessment && (
+            <div className="pathSummary">
+              <span className={`levelChip level-${assessment.level.toLowerCase()}`}>{assessment.level}</span>
+              <span className="muted">
+                Strongest: {TOPICS[Object.entries(assessment.topic_scores).sort((a, b) => b[1] - a[1])[0][0]].label}.
+                Work on: {TOPICS[Object.entries(assessment.topic_scores).sort((a, b) => a[1] - b[1])[0][0]].label}.
+              </span>
+              <Link to="/account/check" className="pathRetake">Retake check</Link>
+            </div>
+          )}
           <div className="modRows">
-            {MODULES.map((m) => {
+            {orderedModules(path).map((m, i) => {
               const s = moduleStats(m, progress);
               return (
                 <div className="modRow" key={m.id}>
                   <img src={m.image} alt="" />
                   <div className="modRowInfo">
-                    <h3>{m.title}</h3>
+                    <h3>
+                      {path && <span className="pathStep num">{i + 1}</span>}
+                      {m.title}
+                      {path && m.lessons.some((l) => keySet.has(l.id) && !s.done.has(l.id)) && (
+                        <span className="keyPill">Key lessons</span>
+                      )}
+                    </h3>
                     <div className="bar" aria-label={`${s.percent}% complete`}>
                       <span style={{ width: `${s.percent}%` }} />
                     </div>

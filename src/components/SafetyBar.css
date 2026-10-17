@@ -1,0 +1,44 @@
+.safetyBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 9px 20px;
+  background: var(--ink);
+  color: #d9eee5;
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+.safetyBar svg {
+  flex-shrink: 0;
+  font-size: 1.15rem;
+  color: var(--coin);
+}
+
+.safetyBar strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.safetyBar a {
+  flex-shrink: 0;
+  margin-left: 6px;
+  color: var(--coin);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .safetyBar {
+    font-size: 0.8rem;
+    padding: 8px 14px;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .safetyMore {
+    display: none;
+  }
+}

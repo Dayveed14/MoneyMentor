@@ -17,7 +17,7 @@ const MODULE_LINKS = [
 // Which nav item should light up on each standalone page
 const PAGE_SECTION = {
   "/modules": "modules", "/savings": "modules", "/budget": "modules", "/finlit": "modules",
-  "/articles": "articles", "/about": "about",
+  "/articles": "articles", "/about": "about", "/alerts": "alerts",
 };
 
 function Navigation() {
@@ -123,6 +123,9 @@ function Navigation() {
 
           <Link to="/#articles" className={cls("articles")} onClick={close}>
             Articles
+          </Link>
+          <Link to="/alerts" className={cls("alerts")} onClick={close}>
+            Scam alerts
           </Link>
           <Link to="/#about" className={cls("about")} onClick={close}>
             About

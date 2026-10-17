@@ -1,17 +1,23 @@
 import { Link } from "react-router-dom";
 import { HiCheckCircle } from "react-icons/hi";
-import { useProgress, moduleStats } from "../../hooks/useProgress";
-import { MODULES, PASS_PERCENT } from "../../data/modules";
+import { useProgress, moduleStats, orderedModules } from "../../hooks/useProgress";
+import { useAssessment } from "../../hooks/useAssessment";
+import { PASS_PERCENT } from "../../data/modules";
 
 function MyModules() {
   const { progress, error, reload } = useProgress();
+  const { assessment } = useAssessment();
+  const keySet = new Set((assessment?.path?.key_lessons || []).map((k) => k.lesson));
 
   return (
     <>
       <header className="accHead">
         <div>
           <h1>My modules</h1>
-          <p>Short lessons, then a quiz. Pass with {PASS_PERCENT}% or more to complete a module.</p>
+          <p>
+            Short lessons, then a quiz. Pass with {PASS_PERCENT}% or more to complete a module.
+            {assessment && " Shown in the order your knowledge check recommended."}
+          </p>
         </div>
       </header>
       {error && (
@@ -21,7 +27,7 @@ function MyModules() {
       )}
 
       <div className="moduleList">
-        {MODULES.map((m) => {
+        {orderedModules(assessment?.path).map((m) => {
           const s = moduleStats(m, progress);
           return (
             <section className="accPanel moduleBlock" key={m.id}>
@@ -42,7 +48,10 @@ function MyModules() {
                   <li key={l.id} className={s.done.has(l.id) ? "done" : ""}>
                     <Link to={`/learn/${m.id}?lesson=${l.id}`}>
                       <span className="lessonNum num">{s.done.has(l.id) ? <HiCheckCircle aria-label="Done" /> : i + 1}</span>
-                      <span className="lessonTitle">{l.title}</span>
+                      <span className="lessonTitle">
+                        {l.title}
+                        {keySet.has(l.id) && !s.done.has(l.id) && <span className="keyPill">Key for you</span>}
+                      </span>
                       <span className="lessonMin num">{l.minutes} min</span>
                     </Link>
                   </li>

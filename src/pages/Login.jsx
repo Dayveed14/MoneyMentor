@@ -40,7 +40,8 @@ const Login = () => {
         const admin = isAdmin(data.user);
         const from = location.state?.from;
         const allowed = from && (admin || !["/dashboard", "/addarticle"].includes(from));
-        navigate(allowed ? from : admin ? "/dashboard" : "/account", { replace: true });
+        const home = admin ? "/dashboard" : data.user.assessed === false ? "/account/check" : "/account";
+        navigate(allowed ? from : home, { replace: true });
       } else {
         setError(data.message || "Login failed. Please try again.");
       }

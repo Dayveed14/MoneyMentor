@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { fetchArticle, articleImage } from "../lib/articles";
 import { apiFetch } from "../config/api";
 import "./AddArticle.css";
 
@@ -17,6 +18,9 @@ const VALID_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
 
 const AddArticle = () => {
   const navigate = useNavigate();
+  const { id } = useParams(); // present when editing
+  const editing = Boolean(id);
+  const [loadingArticle, setLoadingArticle] = useState(editing);
   const fileInputRef = useRef(null);
   const redirectTimer = useRef(null);
 
@@ -28,6 +32,20 @@ const AddArticle = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => () => clearTimeout(redirectTimer.current), []);
+
+  // Editing: load the article (admins can load drafts too)
+  useEffect(() => {
+    if (!editing) return;
+    fetchArticle(id)
+      .then((res) => {
+        if (!res.success || !res.data) throw new Error(res.message || "Article not found.");
+        const a = res.data;
+        setFormData({ title: a.title, summary: a.summary, body: a.body || "", category: a.category, image: null, status: a.status || "published" });
+        setImagePreview(articleImage(a, 800));
+      })
+      .catch((err) => setError(err.message))
+      .finally(() => setLoadingArticle(false));
+  }, [editing, id]);
 
   const categories = [
     "Budgeting",
@@ -96,7 +114,7 @@ const AddArticle = () => {
       setError("Please select a category");
       return false;
     }
-    if (!formData.image) {
+    if (!formData.image && !editing) {
       setError("Please upload an article image");
       return false;
     }
@@ -120,15 +138,16 @@ const AddArticle = () => {
       submitData.append("body", formData.body);
       submitData.append("category", formData.category);
       submitData.append("status", formData.status);
-      submitData.append("image", formData.image);
+      if (formData.image) submitData.append("image", formData.image);
+      if (editing) submitData.append("id", id);
 
-      const data = await apiFetch("api/add_article.php", {
+      const data = await apiFetch(editing ? "api/update_article.php" : "api/add_article.php", {
         method: "POST",
         body: submitData,
       });
 
       if (data.success) {
-        setSuccess("Article created successfully!");
+        setSuccess(editing ? "Changes saved." : data.message || "Article created.");
         setFormData(EMPTY_FORM);
         setImagePreview(null);
         if (fileInputRef.current) fileInputRef.current.value = "";
@@ -149,7 +168,7 @@ const AddArticle = () => {
     <div className="add-article-page">
       <div className="add-article-container">
         <div className="add-article-header">
-          <h1>Create New Article</h1>
+          <h1>{editing ? "Edit article" : "Create new article"}</h1>
           <button type="button" className="btn-back" onClick={() => navigate("/dashboard")}>
             <svg
               width="20"
@@ -238,7 +257,7 @@ const AddArticle = () => {
             <h2>Article Image</h2>
 
             <div className="form-group">
-              <label htmlFor="image">Upload Image *</label>
+              <label htmlFor="image">{editing ? "Image (choose a file to replace it)" : "Upload Image *"}</label>
               <div className="image-upload-area">
                 <input
                   type="file"
@@ -307,8 +326,8 @@ const AddArticle = () => {
             <button
               type="submit"
               className="btn-submit"
-              disabled={loading || !!success}>
-              {loading ? "Creating..." : "Create Article"}
+              disabled={loading || loadingArticle || !!success}>
+              {loading ? "Saving..." : editing ? "Save changes" : "Create article"}
             </button>
           </div>
         </form>

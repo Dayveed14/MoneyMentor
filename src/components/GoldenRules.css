@@ -1,0 +1,91 @@
+.rules {
+  padding: 90px 0;
+  background: var(--paper);
+}
+
+.rulesHead {
+  max-width: 640px;
+  margin-bottom: 40px;
+}
+
+.rulesHead h2 {
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.rulesHead p {
+  line-height: 1.7;
+}
+
+.rulesGrid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.rulesGrid li {
+  padding: 28px 26px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+}
+
+.rulesGrid li:first-child {
+  background: var(--ink);
+  color: #cfe6dc;
+}
+
+.rulesGrid li:first-child h3 {
+  color: #fff;
+}
+
+.rulesGrid li:first-child .ruleIcon {
+  background: var(--coin);
+  color: var(--ink);
+}
+
+.ruleIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: var(--mint);
+  color: var(--ink);
+  font-size: 1.35rem;
+  margin-bottom: 16px;
+}
+
+.rulesGrid h3 {
+  font-size: 1.12rem;
+  margin-bottom: 6px;
+}
+
+.rulesGrid p {
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .rulesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .rules {
+    padding: 64px 0;
+  }
+
+  .rulesGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rulesGrid li {
+    padding: 22px 18px;
+  }
+}

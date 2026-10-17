@@ -571,3 +571,444 @@
 .badge {
   text-transform: capitalize;
 }
+
+/* ===== Additions: clickable stats, quick actions, modals, learning, messages, alerts ===== */
+.stat-link {
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-link:hover {
+  border-color: #1a7f9e;
+  box-shadow: 0 6px 18px -10px rgba(26, 127, 158, 0.5);
+}
+
+.quickActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: -16px 0 28px;
+}
+
+.quickAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px dashed #9ccfdf;
+  border-radius: 10px;
+  background: #f3fafc;
+  color: #156a84;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.quickAction:hover {
+  background: #e6f4f8;
+}
+
+.linkLike {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+a.action-btn {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.content-section .formOk,
+.content-section .formErr,
+.dashboard-main > .formErr {
+  margin-bottom: 14px;
+}
+
+/* Modal */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(15, 30, 26, 0.45);
+  animation: fadeIn 0.15s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+}
+
+.modal {
+  width: min(520px, 100%);
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.45);
+}
+
+.modal.wide {
+  width: min(760px, 100%);
+}
+
+.modalHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.modalHead h2 {
+  font-size: 1.3rem;
+  color: #1a1a1a;
+}
+
+.modalClose {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 8px;
+  background: #f3f4f6;
+  cursor: pointer;
+}
+
+.modalForm {
+  display: grid;
+  gap: 16px;
+}
+
+.modalForm label > span {
+  display: block;
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.modalForm input,
+.modalForm select,
+.modalForm textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.98rem;
+  background: #fff;
+}
+
+.modalForm textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.modalForm input:focus,
+.modalForm select:focus,
+.modalForm textarea:focus {
+  outline: none;
+  border-color: #1a7f9e;
+}
+
+.modalForm small {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.inlineField {
+  display: flex;
+  gap: 8px;
+}
+
+.modalCols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+/* User detail + bars */
+.userDetail {
+  display: grid;
+  gap: 12px;
+}
+
+.userDetail h3,
+.learnCols h3,
+.content-section h3 {
+  font-size: 1rem;
+  color: #1a1a1a;
+  margin-top: 8px;
+}
+
+.topicBars {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.topicBar {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.9fr) minmax(0, 1.4fr) 48px;
+  gap: 12px;
+  align-items: center;
+  font-size: 0.88rem;
+  color: #374151;
+}
+
+.topicBar .num:last-child {
+  text-align: right;
+  font-weight: 600;
+}
+
+.hbar {
+  height: 10px;
+  border-radius: 10px;
+  background: #eef2f1;
+  overflow: hidden;
+}
+
+.hbar span {
+  display: block;
+  height: 100%;
+  border-radius: 10px;
+  background: #1a7f9e;
+}
+
+.hbar.warn span {
+  background: #e08a3c;
+}
+
+.hbar.goal span {
+  background: #3f9d7c;
+}
+
+.levelChip {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: #fde7a8;
+  color: #6b4d00;
+}
+
+.levelChip.level-confident {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.levelChip.level-beginner {
+  background: #fed7aa;
+  color: #9a3412;
+}
+
+/* Learning */
+.learningGrid {
+  display: grid;
+  gap: 24px;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.learnCols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  margin-top: 14px;
+}
+
+.funnel {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 8px 0 18px;
+}
+
+.funnel div {
+  padding: 16px;
+  border-radius: 12px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+}
+
+.funnel strong {
+  display: block;
+  font-size: 1.6rem;
+  color: #1a1a1a;
+}
+
+.funnel span {
+  font-size: 0.82rem;
+  color: #6b7280;
+}
+
+/* Messages */
+.messageList {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.messageList li {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.messageHead {
+  display: grid;
+  grid-template-columns: 10px minmax(100px, 0.6fr) minmax(0, 1.4fr) auto;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: #374151;
+}
+
+.messageHead:hover {
+  background: #f9fafb;
+}
+
+.messageDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.messageList li.unread .messageDot {
+  background: #1a7f9e;
+}
+
+.messageList li.unread strong,
+.messageList li.unread .messageSubject {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.messageSubject {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.messageTime {
+  font-size: 0.82rem;
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+.messageBody {
+  padding: 4px 16px 16px 38px;
+  display: grid;
+  gap: 10px;
+}
+
+.messageText {
+  white-space: pre-wrap;
+  line-height: 1.6;
+  color: #1a1a1a;
+}
+
+/* Scam alerts admin */
+.alertsIntro {
+  margin-bottom: 16px;
+}
+
+.adminAlerts {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.adminAlerts li {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.adminAlertHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.adminAlertHead strong {
+  flex: 1;
+  color: #1a1a1a;
+}
+
+.sev {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.sev-high {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.sev-medium {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.sev-low {
+  background: #e0f2fe;
+  color: #075985;
+}
+
+@media (max-width: 768px) {
+  .modalCols,
+  .funnel {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .messageHead {
+    grid-template-columns: 10px minmax(0, 1fr) auto;
+  }
+
+  .messageSubject {
+    grid-column: 2 / 4;
+  }
+
+  .topicBar {
+    grid-template-columns: minmax(90px, 1fr) minmax(0, 1fr) 40px;
+  }
+
+  .quickActions {
+    margin-top: 0;
+  }
+}

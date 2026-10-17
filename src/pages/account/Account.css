@@ -769,3 +769,429 @@
     font-size: 0.86rem;
   }
 }
+
+/* ===== Knowledge check ===== */
+.checkIntroPanel,
+.checkPanel {
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 36px;
+}
+
+.checkIntroPanel h1,
+.checkPanel h1 {
+  font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+  margin: 6px 0 12px;
+}
+
+.checkIntroPanel > p {
+  line-height: 1.7;
+  max-width: 60ch;
+}
+
+.checkEyebrow {
+  color: var(--growth);
+}
+
+.checkFacts {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  margin: 20px 0 6px;
+  color: var(--ink);
+}
+
+.checkFacts li {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.checkFacts svg {
+  color: var(--growth);
+}
+
+.checkActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 26px;
+}
+
+.checkActions.spread {
+  justify-content: space-between;
+}
+
+.checkStep {
+  font-size: 0.85rem;
+  color: var(--sage);
+}
+
+.checkQ {
+  font-size: 1.4rem;
+  line-height: 1.35;
+  margin-bottom: 20px;
+}
+
+.quizOpt.chosen {
+  border-color: var(--ink);
+  background: var(--mint);
+  font-weight: 600;
+}
+
+.goalGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.goal {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1.5px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.98rem;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.goal:hover {
+  border-color: var(--teal);
+}
+
+.goal.on {
+  border-color: var(--growth);
+  background: #e6f6ee;
+  font-weight: 600;
+}
+
+.goalTick {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 1.5px solid var(--line);
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.goal.on .goalTick {
+  background: var(--growth);
+  border-color: var(--growth);
+  color: #fff;
+}
+
+/* Result */
+.checkResultWrap {
+  display: grid;
+  gap: 24px;
+}
+
+.levelBadge {
+  display: grid;
+  place-content: center;
+  text-align: center;
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.08);
+  border: 8px solid var(--coin);
+}
+
+.levelBadge span {
+  font-family: var(--display);
+  font-size: 1.7rem;
+  color: #fff;
+  line-height: 1;
+}
+
+.levelBadge strong {
+  font-size: 0.85rem;
+  color: var(--coin);
+  margin-top: 4px;
+}
+
+.levelBadge.level-confident {
+  border-color: var(--growth);
+}
+
+.levelBadge.level-confident strong {
+  color: #8fe0b4;
+}
+
+.levelBadge.level-beginner {
+  border-color: #f2a65a;
+}
+
+.btn.isDisabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.pathList {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.pathList li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+  border-radius: 16px;
+  background: var(--paper);
+}
+
+.pathList img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 999px 999px 10px 10px;
+}
+
+.pathList li > div {
+  display: grid;
+  gap: 4px;
+}
+
+.pathList strong {
+  color: var(--ink);
+}
+
+.pathNum,
+.pathStep {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.pathStep {
+  width: 22px;
+  height: 22px;
+  font-size: 0.72rem;
+  margin-right: 8px;
+  vertical-align: 1px;
+}
+
+.pathTag {
+  justify-self: start;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.tag-start {
+  background: var(--coin);
+  color: var(--ink);
+}
+
+.tag-recommended {
+  background: #e6f6ee;
+  color: #11603f;
+}
+
+.tag-refresher {
+  background: var(--line);
+  color: var(--ink-soft);
+}
+
+.keyLessons {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.keyLessons a {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #fff8e7;
+  color: var(--ink);
+  font-weight: 500;
+  border-left: 4px solid var(--coin);
+}
+
+.keyLessons a:hover {
+  background: #fff1cc;
+}
+
+.chipRowWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chipRowWrap .chip {
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 61, 51, 0.2);
+  color: var(--ink);
+  font-size: 0.88rem;
+}
+
+.chipRowWrap .chip:hover {
+  border-color: var(--ink);
+}
+
+.answerReview {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.answerReview li {
+  display: flex;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.answerReview strong {
+  display: block;
+  color: var(--ink);
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.answerReview p {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: #8a3b14;
+}
+
+.answerIcon {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.answerReview .right .answerIcon {
+  background: #e6f6ee;
+  color: var(--growth);
+}
+
+.answerReview .wrong .answerIcon {
+  background: #fdeeee;
+  color: #c9302c;
+}
+
+/* Prompt on the dashboard for people who skipped the check */
+.checkPrompt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 26px;
+  border-radius: 22px;
+  background: #fff8e7;
+  border: 1px solid #f1d58d;
+}
+
+.checkPrompt h2 {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.ctaBtnDark {
+  background: var(--ink);
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.ctaBtnDark:hover {
+  background: #1a5a4b;
+}
+
+.pathSummary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin: -6px 0 16px;
+}
+
+.levelChip {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: var(--coin);
+  color: var(--ink);
+}
+
+.levelChip.level-confident {
+  background: var(--growth);
+  color: #fff;
+}
+
+.levelChip.level-beginner {
+  background: #f2a65a;
+}
+
+.pathRetake {
+  margin-left: auto;
+  color: var(--teal);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.keyPill {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #fff1cc;
+  color: #8a5a00;
+  font-size: 0.7rem;
+  font-weight: 700;
+  vertical-align: 2px;
+  font-family: var(--body);
+}
+
+@media (max-width: 600px) {
+  .checkIntroPanel,
+  .checkPanel {
+    padding: 22px 18px;
+  }
+
+  .checkPrompt {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .resultHero .levelBadge {
+    width: 104px;
+    height: 104px;
+  }
+
+  .pathRetake {
+    margin-left: 0;
+  }
+
+  .checkActions.spread .btn {
+    flex: 1;
+  }
+}

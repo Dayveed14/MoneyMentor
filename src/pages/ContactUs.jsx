@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { apiPost } from "../config/api";
 import "./ContactUs.css";
 
@@ -35,7 +36,14 @@ const infoCards = [
 ];
 
 const ContactUs = () => {
-  const [form, setForm] = useState(EMPTY);
+  const [params] = useSearchParams();
+  // Links like "Ask us about this message" open the form ready to send
+  const [form, setForm] = useState(() => ({
+    ...EMPTY,
+    subject: (params.get("subject") || "").slice(0, 200),
+    message: (params.get("message") || "").slice(0, 5000),
+  }));
+  const isScamQuestion = /scam/i.test(params.get("subject") || "");
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
@@ -65,10 +73,11 @@ const ContactUs = () => {
     <div className="contact-page">
       <div className="contact-container">
         <div className="contact-header">
-          <h1 className="contact-title">Get in touch</h1>
+          <h1 className="contact-title">{isScamQuestion ? "Ask us about a message" : "Get in touch"}</h1>
           <p className="contact-subtitle">
-            Have questions? We'd love to hear from you. Send us a message and
-            we'll respond as soon as possible.
+            {isScamQuestion
+              ? "Paste the message or describe what happened. Don't include your PIN, OTP or passwords. We'll reply with a plain answer and what to do next."
+              : "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible."}
           </p>
         </div>
 

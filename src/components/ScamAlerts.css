@@ -1,0 +1,157 @@
+.alertsSection {
+  padding: 90px 0;
+  background: #fff;
+  border-top: 1px solid var(--line);
+}
+
+.alertsHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.alertsHead h2 {
+  font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.alertsGrid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+.alertCard {
+  border-radius: 20px;
+  background: var(--paper);
+  box-shadow: 0 0 0 1px var(--line);
+  overflow: hidden;
+  border-top: 5px solid var(--sage);
+}
+
+.alertCard.sev-high {
+  border-top-color: #d9534f;
+}
+
+.alertCard.sev-medium {
+  border-top-color: #e6a700;
+}
+
+.alertTop {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  padding: 20px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: var(--ink-soft);
+}
+
+.alertTop h3 {
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+.alertTop p {
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.alertSev {
+  justify-self: start;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.s-high {
+  background: #fdeeee;
+  color: #a12622;
+}
+
+.s-medium {
+  background: #fff3d1;
+  color: #7a5200;
+}
+
+.s-low {
+  background: var(--mint);
+  color: var(--ink);
+}
+
+.alertMore {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  color: var(--teal);
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.alertMore svg {
+  transition: transform 0.2s ease;
+}
+
+.alertCard.open .alertMore svg {
+  transform: rotate(180deg);
+}
+
+.alertBody {
+  display: grid;
+  gap: 14px;
+  padding: 0 20px 20px;
+  font-size: 0.9rem;
+}
+
+.alertBody h4 {
+  font-family: var(--display);
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.alertBody ul,
+.alertBody ol {
+  padding-left: 18px;
+  display: grid;
+  gap: 4px;
+  color: var(--ink);
+}
+
+.alertSkeleton {
+  height: 190px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #eaf3ee 25%, #f5faf7 50%, #eaf3ee 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@media (max-width: 960px) {
+  .alertsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .alertsSection {
+    padding: 64px 0;
+  }
+
+  .alertsHead {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .alertsGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

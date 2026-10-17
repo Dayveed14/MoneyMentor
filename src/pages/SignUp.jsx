@@ -65,7 +65,8 @@ const SignUp = () => {
         // The API returns a session straight away, so there's no second login step
         login(data.user, data.token, true);
         setFormData(EMPTY_FORM);
-        navigate("/account", { replace: true, state: { welcome: data.user.name } });
+        // New learners start with the knowledge check that builds their path
+        navigate("/account/check", { replace: true, state: { welcome: data.user.name } });
       } else {
         setError(data.message || "Registration failed. Please try again.");
       }

@@ -38,6 +38,7 @@ etc. doesn't 404.
 ## Learner area (logged-in users)
 | Route | What |
 |---|---|
+| `/account/check` | Knowledge check (10 questions + goals). Builds a personal learning path; wrong answers become key lessons |
 | `/account` | Dashboard: progress ring, next lesson, module progress, budget snapshot, saved articles, badges |
 | `/account/modules` | Every lesson and quiz, with what's done |
 | `/learn/:moduleId?lesson=…` / `?step=quiz` | Lesson reader and module quiz (pass mark 80%) |
@@ -49,8 +50,20 @@ Course content lives in `src/data/modules.js`. Lesson ids there must match
 `src/modules.php` in the API, which only saves progress for known ids. Badges are
 worked out from progress in `src/lib/achievements.js`.
 
-Login sends admins to `/dashboard` and everyone else to `/account` (or back to the
-page that asked them to log in). Log-in state lives in `src/context/AuthContext.jsx`.
+Login sends admins to `/dashboard`, users who haven't taken the knowledge check to
+`/account/check`, and everyone else to `/account` (or back to the page that asked
+them to log in). Questions and path rules live in `src/data/assessment.js`.
+
+## Scam awareness
+- Safety bar on every page, plus the "Is this a scam?" message checker (`src/lib/scamCheck.js`, runs in the browser)
+- Golden rules, latest scam alerts and an "Ask us first" band on the home page
+- `/alerts` — checker, what to do if you already shared a code or sent money, all alerts
+- Alerts are managed by admins in the dashboard (Scam alerts tab)
+
+## Admin dashboard
+`/dashboard` tabs: Overview, Users (add, change role, reset password, delete, view
+progress), Articles (add, edit at `/editarticle/:id`, publish, delete), Scam alerts,
+Learning & quizzes, Messages, Subscribers. Most tabs can export CSV. Log-in state lives in `src/context/AuthContext.jsx`.
 
 ## Navigation
 Home, Modules, Articles and About scroll to their section on the home page

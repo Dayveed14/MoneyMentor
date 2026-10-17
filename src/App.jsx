@@ -15,6 +15,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import ContactUs from "./pages/ContactUs";
 import NotFound from "./pages/NotFound";
+import AlertsPage from "./pages/AlertsPage";
 
 // Admin screens are only needed by admins — load them on demand
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -27,6 +28,7 @@ const MyModules = lazy(() => import("./pages/account/MyModules"));
 const BudgetPlanner = lazy(() => import("./pages/account/BudgetPlanner"));
 const SavedArticles = lazy(() => import("./pages/account/SavedArticles"));
 const Settings = lazy(() => import("./pages/account/Settings"));
+const Assessment = lazy(() => import("./pages/account/Assessment"));
 const Learn = lazy(() => import("./pages/Learn"));
 
 function App() {
@@ -45,6 +47,7 @@ function App() {
             <Route path="/articles" element={<ArticlesPage />} />
             <Route path="/article/:id" element={<ArticleDetail />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/alerts" element={<AlertsPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/contactUs" element={<ContactUs />} />
@@ -57,6 +60,7 @@ function App() {
                 <Route path="budget" element={<BudgetPlanner />} />
                 <Route path="saved" element={<SavedArticles />} />
                 <Route path="settings" element={<Settings />} />
+                <Route path="check" element={<Assessment />} />
               </Route>
               <Route path="/learn/:moduleId" element={<Learn />} />
             </Route>
@@ -68,6 +72,7 @@ function App() {
           <Route element={<PrivateRoute requiredRole="admin" />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/addarticle" element={<AddArticle />} />
+            <Route path="/editarticle/:id" element={<AddArticle />} />
           </Route>
         </Routes>
       </Suspense>

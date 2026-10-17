@@ -1,0 +1,46 @@
+.savingsSection {
+  padding: 96px 0;
+  background: linear-gradient(180deg, var(--mint) 0%, var(--paper) 100%);
+}
+
+.savingsInner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  gap: 56px;
+  align-items: center;
+}
+
+.savingsCopy h2 {
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.savingsCopy p {
+  line-height: 1.7;
+  max-width: 46ch;
+  margin-bottom: 24px;
+}
+
+.savingsArt {
+  display: block;
+  width: 70%;
+  max-width: 360px;
+  height: auto;
+  margin-top: 32px;
+}
+
+@media (max-width: 900px) {
+  .savingsSection {
+    padding: 64px 0;
+  }
+
+  .savingsInner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .savingsArt {
+    display: none;
+  }
+}

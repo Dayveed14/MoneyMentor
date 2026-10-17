@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
 import { HiCheck } from "react-icons/hi";
+import { useAuth } from "../context/AuthContext";
 import Guilloche from "./Guilloche";
-import SavingsGrowth from "./SavingsGrowth";
-import bannerImg from "../assets/images/banner.webp";
+import ScamChecker from "./ScamChecker";
 import "./Hero.css";
 
 function Hero() {
@@ -13,32 +12,26 @@ function Hero() {
       <Guilloche className="heroPattern" />
       <div className="heroInner">
         <div className="heroCopy">
-          <h1>Small savings. Serious growth.</h1>
+          <h1>In doubt about money? Check here first.</h1>
           <p className="heroLead">
-            MoneyMentor teaches budgeting, saving and staying safe with money in
-            short, practical lessons. Move the sliders and watch a weekly habit
-            compound.
+            MoneyMentor is a free, trusted place to learn how money works and how scammers operate,
+            so your OTP, your PIN and your savings stay yours.
           </p>
           <div className="heroActions">
             <Link to={user ? "/account" : "/signup"} className="btn btn-solid">
               {user ? "Go to my dashboard" : "Start learning free"}
             </Link>
-            <Link to="/#modules" className="btn btn-ghost">
-              Explore modules
-            </Link>
+            <Link to="/#safety" className="btn btn-ghost">The 6 golden rules</Link>
           </div>
           <ul className="heroPoints">
-            <li><HiCheck aria-hidden="true" /> Lessons you can finish on a lunch break</li>
-            <li><HiCheck aria-hidden="true" /> A quiz at the end of every module</li>
-            <li><HiCheck aria-hidden="true" /> Free to start, no card needed</li>
+            <li><HiCheck aria-hidden="true" /> Spot scams before they cost you</li>
+            <li><HiCheck aria-hidden="true" /> Short lessons on saving and budgeting</li>
+            <li><HiCheck aria-hidden="true" /> Free, with no card needed</li>
           </ul>
         </div>
 
         <div className="heroVisual">
-          <div className="heroArch">
-            <img src={bannerImg} alt="" width="800" height="720" fetchPriority="high" />
-          </div>
-          <SavingsGrowth />
+          <ScamChecker compact />
         </div>
       </div>
     </section>
