@@ -1,6 +1,6 @@
-import debtImg from "../assets/images/debt.svg";
-import investingImg from "../assets/images/investing.svg";
-import planningImg from "../assets/images/planning.svg";
+import investingImg from "../assets/images/invst.jpg";
+import planningImg from "../assets/images/finplan.jpg";
+import debtImg from "../assets/images/DnC.jpg";
 
 /*
  * Debt & credit, Investing basics and Financial planning.
