@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   FiGrid, FiUsers, FiFileText, FiBarChart2, FiMail, FiSend, FiAlertTriangle,
-  FiLogOut, FiPlus, FiHome, FiDownload,
+  FiLogOut, FiPlus, FiHome, FiDownload, FiFlag, FiHelpCircle, FiPhoneCall,
 } from "react-icons/fi";
 import { getUser } from "../utils/auth";
 import { useAuth } from "../context/AuthContext";
@@ -14,6 +14,9 @@ import AdminLearning from "./admin/AdminLearning";
 import AdminMessages from "./admin/AdminMessages";
 import AdminSubscribers from "./admin/AdminSubscribers";
 import AdminAlerts from "./admin/AdminAlerts";
+import AdminReports from "./admin/AdminReports";
+import AdminQuestions from "./admin/AdminQuestions";
+import AdminHelpContacts from "./admin/AdminHelpContacts";
 import "./Dashboard.css";
 
 const TABS = [
@@ -21,9 +24,12 @@ const TABS = [
   { id: "users", label: "Users", icon: FiUsers, add: "Add user", export: "users" },
   { id: "articles", label: "Articles", icon: FiFileText, add: "Write article", export: "articles" },
   { id: "alerts", label: "Scam alerts", icon: FiAlertTriangle, add: "New alert" },
+  { id: "reports", label: "Scam reports", icon: FiFlag, export: "reports" },
+  { id: "questions", label: "Ask an expert", icon: FiHelpCircle, export: "questions" },
+  { id: "help", label: "Help contacts", icon: FiPhoneCall, add: "Add contact" },
   { id: "learning", label: "Learning & quizzes", icon: FiBarChart2 },
   { id: "messages", label: "Messages", icon: FiMail, export: "messages" },
-  { id: "subscribers", label: "Subscribers", icon: FiSend, export: "subscribers" },
+  { id: "subscribers", label: "Subscribers", icon: FiSend, add: "Send newsletter", export: "subscribers" },
 ];
 
 const Dashboard = () => {
@@ -119,7 +125,10 @@ const Dashboard = () => {
         {activeTab === "alerts" && <AdminAlerts addTick={addTick} />}
         {activeTab === "learning" && <AdminLearning />}
         {activeTab === "messages" && <AdminMessages />}
-        {activeTab === "subscribers" && <AdminSubscribers />}
+        {activeTab === "subscribers" && <AdminSubscribers addTick={addTick} />}
+        {activeTab === "reports" && <AdminReports />}
+        {activeTab === "questions" && <AdminQuestions />}
+        {activeTab === "help" && <AdminHelpContacts addTick={addTick} />}
       </main>
     </div>
   );

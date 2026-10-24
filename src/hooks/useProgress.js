@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { apiFetch, apiPost } from "../config/api";
 import { MODULES, PASS_PERCENT } from "../data/modules";
 
-const EMPTY = { lessons: { savings: [], budgeting: [], finlit: [] }, quizzes: {} };
+const EMPTY = { lessons: { savings: [], budgeting: [], finlit: [], debt: [], investing: [], planning: [] }, quizzes: {} };
 
 /** Loads the learner's progress and exposes helpers to update it. */
 export function useProgress() {

@@ -1,7 +1,7 @@
-import { FiUsers, FiFileText, FiAward, FiMail, FiAlertTriangle } from "react-icons/fi";
+import { FiUsers, FiFileText, FiAward, FiMail, FiAlertTriangle, FiFlag, FiHelpCircle, FiTrendingUp, FiSend } from "react-icons/fi";
 import { useAdmin, SectionState, timeAgo } from "./adminShared";
 
-const ACTIVITY_ICON = { user: "👤", article: "📝", message: "✉️" };
+const ACTIVITY_ICON = { user: "👤", article: "📝", message: "✉️", report: "🚩", question: "❓" };
 
 function AdminOverview({ goTo }) {
   const { data, loading, error, reload } = useAdmin("api/admin_stats.php");
@@ -12,6 +12,9 @@ function AdminOverview({ goTo }) {
     { label: "Lessons completed", value: s.lessons_completed ?? 0, change: `${s.quiz_attempts ?? 0} quiz attempts, ${s.active_learners ?? 0} active this month`, color: "purple", icon: FiAward, tab: "learning" },
     { label: "Published articles", value: s.articles_published, change: `${s.articles_draft} draft${s.articles_draft === 1 ? "" : "s"}, ${Number(s.views_total).toLocaleString()} views`, color: "green", icon: FiFileText, tab: "articles" },
     { label: "Unread messages", value: s.messages_unread, change: `${s.subscribers_total} newsletter subscriber${s.subscribers_total === 1 ? "" : "s"}`, color: "orange", icon: FiMail, tab: "messages" },
+    { label: "New scam reports", value: s.reports_new ?? 0, change: "Review and turn into alerts", color: "red", icon: FiFlag, tab: "reports", positive: false },
+    { label: "Questions waiting", value: s.questions_pending ?? 0, change: "From Ask an expert", color: "teal", icon: FiHelpCircle, tab: "questions" },
+    { label: "Learners retested", value: s.retested_learners ?? 0, change: "See knowledge gain", color: "green", icon: FiTrendingUp, tab: "learning" },
   ];
   return (
     <div className="content-section">
@@ -35,6 +38,9 @@ function AdminOverview({ goTo }) {
         <button type="button" className="quickAction" onClick={() => goTo("articles", true)}>
           <FiFileText aria-hidden="true" /> Write an article
         </button>
+        <button type="button" className="quickAction" onClick={() => goTo("subscribers", true)}>
+          <FiSend aria-hidden="true" /> Email subscribers
+        </button>
         <button type="button" className="quickAction" onClick={() => goTo("users", true)}>
           <FiUsers aria-hidden="true" /> Add a user
         </button>
@@ -43,7 +49,7 @@ function AdminOverview({ goTo }) {
       <div className="recent-activity">
         <h2>Recent activity</h2>
         {data.activity.length === 0 ? (
-          <p className="dash-muted">Nothing yet. New sign-ups, articles and messages will show up here.</p>
+          <p className="dash-muted">Nothing yet. New sign-ups, articles, messages, reports and questions show up here.</p>
         ) : (
           <div className="activity-list">
             {data.activity.map((a, i) => (

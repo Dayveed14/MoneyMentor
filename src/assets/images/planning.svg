@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Financial planning">
+<rect width="600" height="600" fill="#def6e5"/>
+<rect x="110" y="120" width="380" height="380" rx="28" fill="#fff" stroke="#0f3d33" stroke-width="8"/>
+<rect x="110" y="120" width="380" height="80" rx="28" fill="#0f3d33"/><rect x="110" y="170" width="380" height="30" fill="#0f3d33"/>
+<rect x="180" y="90" width="18" height="60" rx="9" fill="#e8b54a"/><rect x="402" y="90" width="18" height="60" rx="9" fill="#e8b54a"/>
+<g fill="#0f3d33" opacity=".12"><rect x="150" y="235" width="60" height="50" rx="10"/><rect x="230" y="235" width="60" height="50" rx="10"/><rect x="310" y="235" width="60" height="50" rx="10"/><rect x="150" y="305" width="60" height="50" rx="10"/><rect x="310" y="305" width="60" height="50" rx="10"/><rect x="390" y="305" width="60" height="50" rx="10"/><rect x="150" y="375" width="60" height="50" rx="10"/><rect x="230" y="375" width="60" height="50" rx="10"/></g>
+<rect x="390" y="235" width="60" height="50" rx="10" fill="#0b8bb5"/>
+<rect x="230" y="305" width="60" height="50" rx="10" fill="#2f9e6e"/>
+<rect x="310" y="375" width="140" height="50" rx="10" fill="#e8b54a"/>
+<path d="M246 330l12 12 22-24" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="470" cy="470" r="62" fill="#0f3d33"/><path d="M470 430v40l26 18" fill="none" stroke="#e8b54a" stroke-width="10" stroke-linecap="round"/>
+</svg>

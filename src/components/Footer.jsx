@@ -47,7 +47,19 @@ function Footer() {
           <Link to="/savings">Saving strategy</Link>
           <Link to="/budget">Budgeting</Link>
           <Link to="/finlit">Financial literacy 101</Link>
+          <Link to="/module/debt">Debt &amp; credit</Link>
+          <Link to="/module/investing">Investing basics</Link>
+          <Link to="/module/planning">Financial planning</Link>
           <Link to="/articles">Articles</Link>
+        </nav>
+
+        <nav className="footerCol" aria-label="Stay safe">
+          <h3>Stay safe</h3>
+          <Link to="/alerts">Scam alerts</Link>
+          <Link to="/verify">Check before you trust</Link>
+          <Link to="/help-now">Got scammed?</Link>
+          <Link to="/report">Report a scam</Link>
+          <Link to="/questions">Ask an expert</Link>
         </nav>
 
         <nav className="footerCol" aria-label="Company">
@@ -66,7 +78,7 @@ function Footer() {
 
         <div className="footerSub">
           <h3>Subscribe</h3>
-          <p>Get new articles and money tips in your inbox.</p>
+          <p>Get new scam alerts and money tips in your inbox.</p>
           {subscribed ? (
             <p className="footerThanks">You&apos;re subscribed. Look out for our next email.</p>
           ) : (

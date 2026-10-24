@@ -109,8 +109,7 @@ const Login = () => {
                 />
                 <span>Remember me</span>
               </label>
-              {/* TODO: point to a reset-password page when it exists */}
-              <Link to="/contactUs" className="auth-link">
+              <Link to="/forgot-password" className="auth-link">
                 Forgot Password?
               </Link>
             </div>

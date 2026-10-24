@@ -1,11 +1,13 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FiGrid, FiBookOpen, FiPieChart, FiBookmark, FiSettings } from "react-icons/fi";
+import { FiGrid, FiBookOpen, FiPieChart, FiBookmark, FiSettings, FiCreditCard, FiHelpCircle } from "react-icons/fi";
 import "./Account.css";
 
 const TABS = [
   { to: "/account", label: "Overview", icon: FiGrid, end: true },
   { to: "/account/modules", label: "My modules", icon: FiBookOpen },
   { to: "/account/budget", label: "Budget planner", icon: FiPieChart },
+  { to: "/account/spending", label: "Spending", icon: FiCreditCard },
+  { to: "/account/questions", label: "Ask an expert", icon: FiHelpCircle },
   { to: "/account/saved", label: "Saved articles", icon: FiBookmark },
   { to: "/account/settings", label: "Settings", icon: FiSettings },
 ];

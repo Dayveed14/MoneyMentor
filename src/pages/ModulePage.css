@@ -225,7 +225,7 @@
 
 .moduleNextGrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 20px;
 }
 
@@ -268,3 +268,14 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* ===== Data-driven module pages (debt, investing, planning) ===== */
+.moduleSyllabus { padding: 8px 20px 56px; max-width: 900px; margin: 0 auto; }
+.syllabusHead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; margin-bottom: 18px; }
+.syllabusHead h2 { font-family: var(--font-display, inherit); color: var(--ink, #0f3d33); font-size: clamp(1.4rem, 3vw, 1.9rem); margin: 0; }
+.syllabusHead p { display: flex; align-items: center; gap: 6px; color: #4b635c; margin: 0; font-size: .95rem; }
+.syllabusList { list-style: none; counter-reset: lesson; margin: 0; padding: 0; display: grid; gap: 12px; }
+.syllabusList li { counter-increment: lesson; position: relative; background: #fff; border: 1px solid #d7e9de; border-radius: 16px; padding: 16px 18px 16px 64px; display: grid; gap: 2px; }
+.syllabusList li::before { content: counter(lesson); position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 34px; height: 34px; border-radius: 50%; background: var(--mint, #def6e5); color: var(--ink, #0f3d33); font-weight: 700; display: grid; place-items: center; }
+.syllabusList strong { color: var(--ink, #0f3d33); }
+.syllabusList span { color: #4b635c; font-size: .93rem; }

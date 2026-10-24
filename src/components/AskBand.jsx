@@ -15,7 +15,8 @@ function AskBand() {
         </div>
         <div className="askActions">
           <Link to={`/contactUs?subject=${encodeURIComponent("Is this a scam?")}`} className="btn askBtn">Ask about a message</Link>
-          <Link to="/alerts#check" className="askLink">Or check it yourself</Link>
+          <Link to="/verify#check" className="askLink">Or check it yourself</Link>
+          <Link to="/help-now" className="askLink">Already sent money? Act now</Link>
         </div>
       </div>
     </section>

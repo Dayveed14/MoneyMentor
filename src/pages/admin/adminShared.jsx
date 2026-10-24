@@ -112,3 +112,14 @@ export function suggestPassword() {
   const bytes = crypto.getRandomValues(new Uint8Array(12));
   return Array.from(bytes, (b) => chars[b % chars.length]).join("");
 }
+
+/** Shown wherever admins send email, so test mode is never a surprise. */
+export function MailModeNote({ enabled }) {
+  if (enabled) return null;
+  return (
+    <p className="mailNote" role="note">
+      Email is in <strong>test mode</strong>: messages are written to the server&apos;s mail log instead of being sent.
+      Set MAIL_DRIVER, MAIL_FROM and an API key on the server to send real emails (see the API README).
+    </p>
+  );
+}

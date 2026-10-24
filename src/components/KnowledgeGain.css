@@ -1,0 +1,24 @@
+.gainCard { background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 22px 24px; margin-bottom: 20px; }
+.gainTop { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.gainTop h2 { font-size: 1.25rem; color: var(--ink); margin: 2px 0 6px; }
+.gainTop p { margin: 0; }
+.gainBig { font-size: 2.6rem; font-weight: 800; color: var(--sage); font-family: var(--display); line-height: 1; }
+.gainBig.up { color: var(--growth); }
+.gainBig.down { color: #c9302c; }
+.gainTopics { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 10px; }
+.gainTopics li { display: grid; grid-template-columns: 120px minmax(0, 1fr) 44px; gap: 12px; align-items: center; font-size: .9rem; }
+.gainLbl { color: var(--ink); font-weight: 500; }
+.gainBars { display: grid; gap: 3px; }
+.gainBars span { height: 8px; border-radius: 99px; }
+.gainBefore, .kBefore { background: #c9ded2; }
+.gainAfter, .kAfter { background: var(--growth); }
+.gainDelta { text-align: right; font-weight: 700; color: var(--sage); }
+.gainDelta.up { color: var(--growth); }
+.gainDelta.down { color: #c9302c; }
+.gainKey { display: flex; align-items: center; gap: 6px; margin: 12px 0 0; }
+.gainKey span { display: inline-block; width: 14px; height: 8px; border-radius: 99px; margin-left: 8px; }
+.gainCard.compact { padding: 16px 20px; }
+@media (max-width: 520px) {
+  .gainTopics li { grid-template-columns: 90px minmax(0, 1fr) 38px; }
+  .gainBig { font-size: 2rem; }
+}

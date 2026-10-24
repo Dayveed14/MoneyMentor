@@ -1,5 +1,5 @@
 /*
- * The knowledge check shown to new learners. Two questions per topic; each
+ * The knowledge check shown to new learners. Two questions per topic (six topics); each
  * question points at the lesson that teaches it, so wrong answers become
  * "key lessons" on the learner's path.
  */
@@ -8,8 +8,9 @@ export const TOPICS = {
   security: { label: "Scams & fraud", modules: ["finlit"], articles: ["Financial Planning"] },
   saving: { label: "Saving", modules: ["savings"], articles: ["Savings"] },
   budgeting: { label: "Budgeting", modules: ["budgeting"], articles: ["Budgeting"] },
-  credit: { label: "Debt & credit", modules: ["finlit", "budgeting"], articles: ["Debt Management", "Credit Cards"] },
-  investing: { label: "Investing", modules: ["savings", "finlit"], articles: ["Investing", "Retirement"] },
+  credit: { label: "Debt & credit", modules: ["debt"], articles: ["Debt Management", "Credit Cards"] },
+  investing: { label: "Investing", modules: ["investing"], articles: ["Investing"] },
+  planning: { label: "Planning", modules: ["planning"], articles: ["Financial Planning", "Retirement"] },
 };
 
 export const GOALS = [
@@ -18,6 +19,7 @@ export const GOALS = [
   { id: "budgeting", label: "Control my spending" },
   { id: "credit", label: "Understand loans and debt" },
   { id: "investing", label: "Start investing" },
+  { id: "planning", label: "Plan for my future and family" },
 ];
 
 export const QUESTIONS = [
@@ -75,7 +77,7 @@ export const QUESTIONS = [
     options: ["Only the monthly payment", "The total cost, including interest and fees", "How fast it's approved", "Which lender has better adverts"],
     answer: 1,
     why: "A low monthly payment can hide a much higher total cost.",
-    lesson: { module: "finlit", lesson: "foundations" },
+    lesson: { module: "debt", lesson: "true-cost" },
   },
   {
     topic: "credit",
@@ -83,7 +85,7 @@ export const QUESTIONS = [
     options: ["The debt disappears quickly", "You pay much more in interest over time", "The bank cancels the interest", "Nothing changes"],
     answer: 1,
     why: "Interest keeps building on what's left, so minimum payments make debt last much longer.",
-    lesson: { module: "budgeting", lesson: "realistic-goals" },
+    lesson: { module: "debt", lesson: "pay-it-off" },
   },
   {
     topic: "investing",
@@ -91,7 +93,7 @@ export const QUESTIONS = [
     options: ["A great opportunity", "A scam", "Normal for the stock market", "A government bond"],
     answer: 1,
     why: "Real investments never guarantee big, fast returns. This is how Ponzi schemes recruit people.",
-    lesson: { module: "finlit", lesson: "scam-mail" },
+    lesson: { module: "investing", lesson: "ponzi" },
   },
   {
     topic: "investing",
@@ -99,9 +101,28 @@ export const QUESTIONS = [
     options: ["To lower their risk", "To pay more fees", "To guarantee returns", "Because the law requires it"],
     answer: 0,
     why: "If one investment does badly, the others can cushion the loss.",
-    lesson: { module: "savings", lesson: "set-goals" },
+    lesson: { module: "investing", lesson: "diversify" },
+  },
+  {
+    topic: "planning",
+    q: "What does insurance do for you?",
+    options: ["Makes you money every year", "Lets you pay a small, known amount instead of risking a big loss", "Is only for rich people", "Replaces the need to save"],
+    answer: 1,
+    why: "Insurance swaps a big, unexpected loss for a small, predictable cost.",
+    lesson: { module: "planning", lesson: "insurance" },
+  },
+  {
+    topic: "planning",
+    q: "When is the best time to start saving for retirement?",
+    options: ["A few years before you retire", "As early as you can, even with small amounts", "Only once you earn a lot", "Never, family will take care of me"],
+    answer: 1,
+    why: "Starting early gives your money the most time to grow, so small amounts matter.",
+    lesson: { module: "planning", lesson: "pension" },
   },
 ];
+
+// Tie-break order for the learning path
+export const MODULE_ORDER = ["finlit", "savings", "budgeting", "debt", "investing", "planning"];
 
 export function levelFor(score, total) {
   const pct = score / total;
@@ -138,10 +159,10 @@ export function buildResult(answers, goals) {
     Object.keys(TOPICS).map((t) => [t, 2 - topicScores[t] + (goals.includes(t) ? 1 : 0)])
   );
 
-  const modulePriority = { savings: 0, budgeting: 0, finlit: 0 };
+  const modulePriority = Object.fromEntries(MODULE_ORDER.map((m) => [m, 0]));
   Object.entries(TOPICS).forEach(([t, info]) => info.modules.forEach((m) => (modulePriority[m] += need[t])));
   // Scams first when tied — protecting people is the platform's first job
-  const tieOrder = ["finlit", "savings", "budgeting"];
+  const tieOrder = MODULE_ORDER;
   const modules = Object.keys(modulePriority).sort(
     (a, b) => modulePriority[b] - modulePriority[a] || tieOrder.indexOf(a) - tieOrder.indexOf(b)
   );

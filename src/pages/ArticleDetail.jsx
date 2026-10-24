@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { HiArrowLeft, HiLink, HiCheck, HiOutlineBookmark, HiBookmark } from "react-icons/hi";
 import { useAuth } from "../context/AuthContext";
-import { apiFetch, apiPost } from "../config/api";
+import { apiFetch, apiPost, apiUrl } from "../config/api";
 import { BsTwitterX, BsWhatsapp, BsFacebook } from "react-icons/bs";
 import {
   articleImage, FALLBACK_ARTICLE_IMG, fetchArticle, formatDate, readingTime, useArticles,
@@ -39,9 +39,11 @@ function useReadingProgress() {
   return progress;
 }
 
-function ShareButtons({ title }) {
+function ShareButtons({ title, id }) {
   const [copied, setCopied] = useState(false);
-  const url = window.location.href;
+  // The API's share page gives WhatsApp/Facebook/X a preview card, then opens the article.
+  // Mock articles (no backend) just share the page itself.
+  const url = Number(id) > 0 && !String(id).startsWith("mock") ? apiUrl(`api/share.php?article=${id}`) : window.location.href;
   const enc = encodeURIComponent;
 
   const copy = async () => {
@@ -230,7 +232,7 @@ function ArticleDetail() {
                 <span>Save</span>
                 <SaveButton articleId={article.id} />
               </div>
-              <ShareButtons title={article.title} />
+              <ShareButtons title={article.title} id={article.id} />
             </div>
           </aside>
 

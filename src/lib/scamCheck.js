@@ -10,6 +10,8 @@ const RULES = [
     weight: 3,
     title: "Asks for a code, PIN or password",
     explain: "No bank, telco or government office will ever ask for your OTP, PIN, password, CVV or BVN by call, SMS or chat.",
+    title_pcm: "E dey ask for code, PIN or password",
+    explain_pcm: "No bank, network or government office go ever ask for your OTP, PIN, password, CVV or BVN for call, SMS or chat.",
     pattern: /\b(otp|one[- ]?time (?:password|passcode|pin|code)|pin|cvv|password|passcode|bvn|nin|token|security code|verification code|the code (?:we|i) (?:just )?sent)\b/gi,
   },
   {
@@ -17,6 +19,8 @@ const RULES = [
     weight: 3,
     title: "Wants money before you receive money",
     explain: "Paying a \"fee\" to unlock a prize, loan, job or refund is the most common scam there is.",
+    title_pcm: "E want make you pay before you collect money",
+    explain_pcm: "To pay \"fee\" before you collect prize, loan, work or refund na the most common scam.",
     pattern: /\b(processing fee|transfer fee|registration fee|activation fee|clearance fee|release fee|pay (?:a |the )?(?:small )?fee|send (?:me|us) (?:money|airtime)|pay to (?:claim|receive|unlock|release))\b/gi,
   },
   {
@@ -24,6 +28,8 @@ const RULES = [
     weight: 3,
     title: "Too good to be true",
     explain: "Prizes you never entered for, guaranteed profits and money that doubles fast are classic bait.",
+    title_pcm: "E too sweet to be true",
+    explain_pcm: "Prize wey you no enter for, profit wey dem guarantee, and money wey dey double quick quick na bait.",
     pattern: /\b(you(?:'ve| have)? won|winner|prize|lottery|jackpot|double your (?:money|investment)|guaranteed (?:returns?|profits?|income)|\d+\s?% (?:daily|weekly|monthly|profit|returns?)|free money|cash grant|giveaway)\b/gi,
   },
   {
@@ -31,6 +37,8 @@ const RULES = [
     weight: 3,
     title: "Asks you to install an app or share your screen",
     explain: "Screen-sharing and remote-access apps let a scammer watch you type codes or take over your phone.",
+    title_pcm: "E dey tell you to install app or share your screen",
+    explain_pcm: "Screen-sharing and remote apps go make scammer see as you dey type code or take over your phone.",
     pattern: /\b(anydesk|teamviewer|quicksupport|screen ?share|share your screen|install (?:this|the) app|download (?:this|the) app)\b/gi,
   },
   {
@@ -38,6 +46,8 @@ const RULES = [
     weight: 2,
     title: "Pressure or threats",
     explain: "Scammers rush you so you don't stop to think. Real organisations give you time to check.",
+    title_pcm: "Dem dey rush you or threaten you",
+    explain_pcm: "Scammers dey rush you make you no get time think. Real company go give you time to check.",
     pattern: /\b(urgent(?:ly)?|immediately|right now|act now|within (?:\d+|24|48) ?(?:hours?|hrs|minutes?|mins)|today only|last (?:warning|chance)|final (?:notice|warning)|expires? (?:today|soon)|will be (?:blocked|suspended|closed|deactivated|restricted|debited)|has been (?:blocked|suspended|restricted))\b/gi,
   },
   {
@@ -45,6 +55,8 @@ const RULES = [
     weight: 2,
     title: "Wants you to tap a link",
     explain: "Links in unexpected messages often lead to fake websites that steal your details. Open your bank's app yourself instead.",
+    title_pcm: "E want make you click link",
+    explain_pcm: "Link for message wey you no expect fit carry you go fake website wey go thief your details. Open your bank app by yourself.",
     pattern: /(https?:\/\/\S+|www\.\S+|\b\S+\.(?:xyz|top|click|link|info|site|online)\b|\bbit\.ly\/\S*|\btinyurl\.com\/\S*|\bclick (?:here|the link|this link|below)\b|\btap (?:the|this) link\b)/gi,
   },
   {
@@ -52,6 +64,8 @@ const RULES = [
     weight: 2,
     title: "Asks you to keep it secret",
     explain: "Being told not to tell family or your bank is a sign someone doesn't want you to get a second opinion.",
+    title_pcm: "E say make you no tell anybody",
+    explain_pcm: "If dem tell you make you no tell family or your bank, dem no want make another person advise you.",
     pattern: /\b(don'?t tell (?:anyone|anybody|your)|keep (?:this|it) (?:secret|confidential|between us)|do not (?:share|discuss) this)\b/gi,
   },
   {
@@ -59,6 +73,8 @@ const RULES = [
     weight: 1,
     title: "Claims to be an official body",
     explain: "Scammers often pretend to be your bank, a regulator or \"customer care\". That alone isn't proof of a scam, but verify it yourself.",
+    title_pcm: "E claim say na official office",
+    explain_pcm: "Scammers like pretend say dem be your bank, government or \"customer care\". E no mean say na scam straight, but check am by yourself.",
     pattern: /\b(your bank|bank (?:officer|official|manager|staff)|customer (?:care|service)|account officer|support team|verification (?:team|unit|department)|cbn|efcc|central bank|fraud (?:department|unit))\b/gi,
   },
 ];
@@ -77,6 +93,23 @@ export const ADVICE = {
   low: [
     "We didn't spot common scam signs, but scammers change their tactics.",
     "If the message asks for money, codes or personal details, verify it through official channels first.",
+  ],
+};
+
+export const ADVICE_PCM = {
+  high: [
+    "Stop. No reply, no click any link, no share any code, no send any money.",
+    "Contact the company by yourself, with the number wey dey your card, the official app or the official website.",
+    "If you don already give code or pay money, call your bank now now make dem block your account.",
+  ],
+  medium: [
+    "No do anything yet. Check who send am with official contact wey you already trust.",
+    "No ever share code, PIN or password, no matter wetin dem talk.",
+    "Ask person wey you trust, or send the message give us make we check am.",
+  ],
+  low: [
+    "We no see common scam signs, but scammers dey change style.",
+    "If the message dey ask for money, code or your details, check am through official channel first.",
   ],
 };
 

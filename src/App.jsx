@@ -16,6 +16,14 @@ import SignUp from "./pages/SignUp";
 import ContactUs from "./pages/ContactUs";
 import NotFound from "./pages/NotFound";
 import AlertsPage from "./pages/AlertsPage";
+import ModuleDetail from "./pages/ModuleDetail";
+import HelpNow from "./pages/HelpNow";
+import Verify from "./pages/Verify";
+import ReportScam from "./pages/ReportScam";
+import Faq from "./pages/Faq";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import Unsubscribe from "./pages/Unsubscribe";
 
 // Admin screens are only needed by admins — load them on demand
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -29,6 +37,8 @@ const BudgetPlanner = lazy(() => import("./pages/account/BudgetPlanner"));
 const SavedArticles = lazy(() => import("./pages/account/SavedArticles"));
 const Settings = lazy(() => import("./pages/account/Settings"));
 const Assessment = lazy(() => import("./pages/account/Assessment"));
+const Spending = lazy(() => import("./pages/account/Spending"));
+const MyQuestions = lazy(() => import("./pages/account/MyQuestions"));
 const Learn = lazy(() => import("./pages/Learn"));
 
 function App() {
@@ -44,10 +54,18 @@ function App() {
             <Route path="/savings" element={<Savings />} />
             <Route path="/budget" element={<Budget />} />
             <Route path="/finlit" element={<FinLit101 />} />
+            <Route path="/module/:id" element={<ModuleDetail />} />
             <Route path="/articles" element={<ArticlesPage />} />
             <Route path="/article/:id" element={<ArticleDetail />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/alerts" element={<AlertsPage />} />
+            <Route path="/help-now" element={<HelpNow />} />
+            <Route path="/verify" element={<Verify />} />
+            <Route path="/report" element={<ReportScam />} />
+            <Route path="/questions" element={<Faq />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/unsubscribe" element={<Unsubscribe />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/contactUs" element={<ContactUs />} />
@@ -58,6 +76,8 @@ function App() {
                 <Route index element={<Overview />} />
                 <Route path="modules" element={<MyModules />} />
                 <Route path="budget" element={<BudgetPlanner />} />
+                <Route path="spending" element={<Spending />} />
+                <Route path="questions" element={<MyQuestions />} />
                 <Route path="saved" element={<SavedArticles />} />
                 <Route path="settings" element={<Settings />} />
                 <Route path="check" element={<Assessment />} />

@@ -1,15 +1,19 @@
 import { useCallback, useEffect, useState } from "react";
 import { apiFetch } from "../config/api";
 
-/** The learner's latest knowledge-check result (or null if they haven't taken it). */
+/** The learner's latest knowledge-check result (or null) and every result, oldest first. */
 export function useAssessment() {
   const [assessment, setAssessment] = useState(null);
+  const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const load = useCallback(async () => {
     try {
       const res = await apiFetch("api/assessment.php");
-      if (res.success) setAssessment(res.assessment);
+      if (res.success) {
+        setAssessment(res.assessment);
+        setHistory(res.history || []);
+      }
     } catch {
       /* dashboard still works without it */
     } finally {
@@ -21,5 +25,5 @@ export function useAssessment() {
     load();
   }, [load]);
 
-  return { assessment, loading, reload: load };
+  return { assessment, history, loading, reload: load };
 }

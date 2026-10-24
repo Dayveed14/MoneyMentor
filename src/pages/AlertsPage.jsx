@@ -21,9 +21,12 @@ function AlertsPage() {
               <ol>
                 <li>Call your bank now, using the number on your card or in its app, and ask them to block your account and cards.</li>
                 <li>Change your banking and email passwords from a device you trust.</li>
-                <li>Report it to your bank in writing and keep screenshots of the messages.</li>
-                <li><Link to={`/contactUs?subject=${encodeURIComponent("I think I've been scammed")}`}>Tell us what happened</Link> and we&apos;ll help you work out next steps.</li>
+                <li>Keep screenshots of the messages and report it.</li>
               </ol>
+              <div className="alreadyLinks">
+                <Link to="/help-now" className="btn btn-solid btn-sm">See every step and bank codes</Link>
+                <Link to="/report" className="btn btn-ghost btn-sm">Report a scam</Link>
+              </div>
             </div>
           </div>
           <ScamChecker />

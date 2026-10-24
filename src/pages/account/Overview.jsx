@@ -4,6 +4,7 @@ import { HiCheck, HiLockClosed } from "react-icons/hi";
 import { useAuth } from "../../context/AuthContext";
 import { useProgress, moduleStats, nextStep, orderedModules } from "../../hooks/useProgress";
 import { useAssessment } from "../../hooks/useAssessment";
+import KnowledgeGain from "../../components/KnowledgeGain";
 import { TOPICS } from "../../data/assessment";
 import { MODULES, TOTAL_LESSONS } from "../../data/modules";
 import { achievements } from "../../lib/achievements";
@@ -20,7 +21,7 @@ function greeting() {
 function Overview() {
   const { user } = useAuth();
   const { progress, loading, error, reload } = useProgress();
-  const { assessment, loading: checkLoading } = useAssessment();
+  const { assessment, history, loading: checkLoading } = useAssessment();
   const path = assessment?.path;
   const keySet = new Set((path?.key_lessons || []).map((k) => k.lesson));
   const [budget, setBudget] = useState(null);
@@ -35,6 +36,10 @@ function Overview() {
   const step = nextStep(progress, path);
   const badges = achievements(progress, { hasBudget: Boolean(budget), savedCount: saved.length });
   const earned = badges.filter((b) => b.earned).length;
+
+  // Finished every key lesson from the last check? Time to measure what they learned.
+  const keyLessons = path?.key_lessons || [];
+  const readyToRetest = keyLessons.length > 0 && keyLessons.every((k) => progress?.lessons?.[k.module]?.includes(k.lesson));
 
   const planned = budget ? budget.items.reduce((n, i) => n + Number(i.amount), 0) : 0;
 
@@ -57,6 +62,18 @@ function Overview() {
           <Link to="/account/check" className="btn ctaBtnDark">Take the check</Link>
         </section>
       )}
+
+      {readyToRetest && (
+        <section className="checkPrompt retestPrompt">
+          <div>
+            <h2>See how much you&apos;ve learned</h2>
+            <p>You&apos;ve finished every key lesson from your last knowledge check. Take it again to measure your progress.</p>
+          </div>
+          <Link to="/account/check" className="btn ctaBtnDark">Retake the check</Link>
+        </section>
+      )}
+
+      <KnowledgeGain history={history} compact />
 
       {error && (
         <div className="accError" role="alert">

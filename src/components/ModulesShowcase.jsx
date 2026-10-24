@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import savingsImg from "../assets/images/savings.webp";
 import budgetingImg from "../assets/images/budgeting.webp";
 import finlitImg from "../assets/images/finlit.webp";
+import { DEBT, INVESTING, PLANNING } from "../data/modulesMore";
 import "./ModulesShowcase.css";
 
 const MODULES = [
@@ -20,6 +21,7 @@ const MODULES = [
     text: "Gain the confidence to navigate money conversations, and to spot fraud early.",
     topics: ["Interest & credit", "Phishing and OTP scams", "Card safety"],
   },
+  ...[DEBT, INVESTING, PLANNING].map((m) => ({ to: m.page, img: m.image, title: m.title, text: m.blurb, topics: m.topics })),
 ];
 
 function ModulesShowcase() {
@@ -29,7 +31,7 @@ function ModulesShowcase() {
         <div className="modulesHead">
           <div>
             <p className="kicker kickerLight">Our modules</p>
-            <h2>Three modules to start your money journey</h2>
+            <h2>Six modules to take you from the basics to a plan</h2>
           </div>
           <p>
             Each module is designed with you in mind: actionable steps,

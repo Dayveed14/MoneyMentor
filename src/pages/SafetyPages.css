@@ -1,0 +1,129 @@
+/* Shared by /help-now, /verify, /report and /questions */
+.safetyPage { background: var(--paper); }
+.safetyBody { padding: 40px 20px 72px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; }
+.faqSearch input { width: 100%; }
+.safetyBody.narrow { max-width: 820px; }
+
+/* ---------- Heroes ---------- */
+.verifyHero { background: var(--mint); padding: 52px 0 44px; }
+.verifyHero h1, .sosHero h1 { font-size: clamp(2.1rem, 5vw, 3.3rem); font-weight: 800; margin-bottom: 12px; color: var(--ink); }
+.verifyHero p, .sosHero p { max-width: 62ch; line-height: 1.7; color: var(--ink-soft); margin-bottom: 18px; }
+.verifyJump { display: flex; flex-wrap: wrap; gap: 10px; }
+.verifyJump a { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font-weight: 600; color: var(--ink); text-decoration: none; font-size: .92rem; }
+.verifyJump a:hover { border-color: var(--ink); }
+
+.sosHero { background: linear-gradient(180deg, #fff1ec 0%, #fdf6f3 100%); padding: 44px 0 36px; border-bottom: 1px solid #f3d6cc; }
+.sosTop { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; }
+.sosBadge { display: inline-flex; align-items: center; gap: 6px; background: #c9302c; color: #fff; border-radius: 999px; padding: 6px 14px; font-weight: 700; font-size: .85rem; }
+.sosBadge svg { font-size: 1.1rem; }
+.langToggle.onLight { color: var(--ink); border-color: var(--line); background: #fff; }
+.langToggle.onLight[aria-pressed="true"], .langToggle.onLight:hover { background: var(--ink); color: #fff; }
+
+/* ---------- Emergency steps ---------- */
+.sosSteps { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.sosSteps li { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 16px; background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px; }
+.sosSteps li:first-child { border: 2px solid #c9302c; }
+.sosNum { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: #fff; font-weight: 800; font-size: 1.2rem; }
+.sosSteps li:first-child .sosNum { background: #c9302c; }
+.sosSteps h2 { font-size: 1.12rem; margin: 2px 0 4px; color: var(--ink); }
+.sosSteps p { margin: 0; line-height: 1.6; color: var(--ink-soft); }
+
+.helpBlock h2 { font-size: 1.4rem; color: var(--ink); margin-bottom: 6px; }
+.helpBlock > .muted { margin-bottom: 16px; max-width: 70ch; }
+.helpEmpty { background: #fff; border: 1px dashed var(--line); border-radius: 16px; padding: 18px; color: var(--ink-soft); }
+.contactGrid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
+.contactCard { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: grid; gap: 8px; align-content: start; }
+.contactCard.skeleton { min-height: 96px; background: linear-gradient(90deg, #eef5f0, #f8fbf8, #eef5f0); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+.contactCard strong { color: var(--ink); }
+.ussd { display: inline-flex; align-items: baseline; gap: 8px; font-family: ui-monospace, Menlo, monospace; font-size: 1.15rem; font-weight: 700; color: var(--teal-dark); text-decoration: none; }
+.ussd span { font-family: var(--body); font-size: .78rem; font-weight: 600; color: var(--sage); text-transform: uppercase; letter-spacing: .04em; }
+.contactLine { display: inline-flex; align-items: center; gap: 6px; color: var(--ink); text-decoration: none; font-size: .92rem; }
+.contactNote { font-size: .82rem; color: var(--sage); }
+
+.agencyList { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.agencyList li { display: flex; justify-content: space-between; gap: 16px; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 14px 18px; }
+.agencyList strong { color: var(--ink); }
+.agencyList p { margin: 4px 0 0; font-size: .9rem; color: var(--ink-soft); }
+.agencyActions { display: flex; gap: 8px; flex-shrink: 0; }
+.agencyActions .btn { display: inline-flex; align-items: center; gap: 6px; }
+
+.helpCta { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; background: var(--ink); color: #d9eee5; border-radius: 22px; padding: 26px 28px; }
+.helpCta h2 { color: #fff; font-size: 1.35rem; margin-bottom: 6px; }
+.helpCta p { margin: 0; max-width: 52ch; }
+.helpCtaBtns { display: flex; flex-wrap: wrap; gap: 10px; }
+.helpCta .btn-ghost { color: #fff; border-color: rgba(255,255,255,.5); }
+.helpShare { display: grid; justify-items: center; gap: 10px; text-align: center; color: var(--ink-soft); }
+
+/* ---------- Verify page ---------- */
+.verifySection { scroll-margin-top: 100px; }
+.verifyHead h2 { font-size: 1.5rem; color: var(--ink); margin-bottom: 8px; }
+.verifyHead p { color: var(--ink-soft); line-height: 1.65; max-width: 70ch; margin-bottom: 16px; }
+.verifyHead a, .verdictMore a { color: var(--teal-dark); font-weight: 600; }
+.verifyHead a svg { vertical-align: -2px; }
+.flagCheck { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 20px; display: grid; gap: 16px; }
+.flagQs { margin: 0; padding-left: 22px; display: grid; gap: 12px; }
+.flagQs li { padding-left: 4px; }
+.flagQs li > span { display: block; color: var(--ink); line-height: 1.5; margin-bottom: 8px; }
+.yesNo { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.yesNo button { border: 0; background: #fff; padding: 6px 18px; font: inherit; font-weight: 600; color: var(--ink-soft); cursor: pointer; }
+.yesNo button + button { border-left: 1px solid var(--line); }
+.yesNo button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+.flagWhy { margin: 0 0 8px; padding-left: 20px; display: grid; gap: 6px; line-height: 1.5; }
+.verdictMore { margin: 8px 0 0; font-size: .92rem; }
+.flagCheck .linkBtn { justify-self: start; }
+
+/* ---------- Report form ---------- */
+.reportForm { background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 26px; display: grid; gap: 20px; }
+.reportForm fieldset { border: 0; padding: 0; margin: 0; }
+.reportForm legend, .reportForm .field > label:not(.check) { font-weight: 600; color: var(--ink); margin-bottom: 8px; display: block; }
+.reportForm input:not([type="checkbox"]):not([type="radio"]), .reportForm textarea {
+  width: 100%; border: 1px solid #c9ded2; border-radius: 12px; padding: 11px 14px; font: inherit; background: #fff; color: var(--ink);
+}
+.reportForm input:focus, .reportForm textarea:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: transparent; }
+.reportForm textarea { resize: vertical; line-height: 1.5; }
+.opt { color: var(--sage); font-weight: 400; font-size: .85rem; }
+.fieldRow { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.check { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; color: var(--ink); cursor: pointer; }
+.check input { width: 18px; height: 18px; accent-color: var(--ink); }
+.amountRow { margin-top: 12px; display: grid; gap: 6px; max-width: 280px; }
+.amountRow label { font-weight: 500; color: var(--ink-soft); font-size: .92rem; }
+.reportForm > .btn { justify-self: start; }
+
+.chipGrid, .chipRow { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid #c9ded2; border-radius: 999px; padding: 8px 14px; background: #fff; cursor: pointer; font: inherit; font-size: .9rem; font-weight: 500; color: var(--ink); }
+.chip input { position: absolute; opacity: 0; pointer-events: none; }
+.chip:has(input:focus-visible) { outline: 2px solid var(--teal); outline-offset: 2px; }
+.chip.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+.reportDone { background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 30px; display: grid; gap: 16px; }
+.reportDone h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); color: var(--ink); }
+.reportDone p { color: var(--ink-soft); line-height: 1.6; margin: 0; }
+.reportDone .alreadyBox { margin: 0; padding: 18px 20px; border-radius: 16px; background: #fff7f5; border-left: 6px solid #d9534f; }
+.reportDone .alreadyBox h2 { font-size: 1.05rem; margin-bottom: 6px; }
+.reportDone .alreadyBox a { color: var(--teal-dark); font-weight: 600; }
+.reportDone .helpCtaBtns .btn-ghost { color: var(--ink); }
+
+/* ---------- FAQ ---------- */
+.faqTools { display: grid; gap: 14px; }
+.faqSearch { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid #c9ded2; border-radius: 999px; padding: 4px 18px; }
+.faqSearch svg { color: var(--sage); font-size: 1.2rem; flex: none; }
+.faqSearch input { border: 0; outline: 0; flex: 1; padding: 10px 0; font: inherit; background: transparent; min-width: 0; }
+.faqList { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.faqList li { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.faqList button { width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "topic icon" "q icon"; gap: 4px 12px; text-align: left; background: none; border: 0; padding: 16px 18px; font: inherit; cursor: pointer; color: var(--ink); }
+.faqTopic { grid-area: topic; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--growth); }
+.faqQ { grid-area: q; font-weight: 600; line-height: 1.45; }
+.faqList button svg { grid-area: icon; align-self: center; transition: transform .2s; }
+.faqList li.open button svg { transform: rotate(180deg); }
+.faqA { padding: 0 18px 16px; color: var(--ink-soft); line-height: 1.65; }
+.faqA p { margin: 0 0 10px; }
+.faqNote { text-align: center; }
+
+@media (max-width: 640px) {
+  .safetyBody { padding: 28px 16px 56px; gap: 32px; }
+  .sosSteps li { grid-template-columns: 38px minmax(0, 1fr); gap: 12px; padding: 16px; }
+  .sosNum { width: 36px; height: 36px; font-size: 1rem; }
+  .agencyList li { flex-direction: column; align-items: flex-start; }
+  .reportForm { padding: 18px; }
+}

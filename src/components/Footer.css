@@ -6,8 +6,8 @@
 
 .footerGrid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1.5fr;
-  gap: 40px;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr 1.4fr;
+  gap: 32px;
 }
 
 .footerBrand img {
@@ -130,6 +130,17 @@
   padding-top: 22px;
   border-top: 1px solid var(--line);
   font-size: 0.85rem;
+}
+
+@media (max-width: 1080px) {
+  .footerGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .footerBrand,
+  .footerSub {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 900px) {

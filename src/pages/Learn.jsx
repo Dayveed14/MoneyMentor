@@ -3,6 +3,7 @@ import { Link, useParams, useSearchParams } from "react-router-dom";
 import { HiCheckCircle, HiArrowLeft, HiArrowRight, HiCheck, HiX } from "react-icons/hi";
 import { moduleById, MODULES, PASS_PERCENT } from "../data/modules";
 import { useProgress, moduleStats } from "../hooks/useProgress";
+import { apiFetch } from "../config/api";
 import NotFound from "./NotFound";
 import "./Learn.css";
 
@@ -117,10 +118,23 @@ function Learn() {
   const isQuiz = params.get("step") === "quiz";
   const lessonIndex = module ? Math.max(0, module.lessons.findIndex((l) => l.id === params.get("lesson"))) : 0;
   const lesson = module?.lessons[lessonIndex];
+  const [videos, setVideos] = useState({});
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [moduleId, lessonIndex, isQuiz]);
+
+  // Optional YouTube videos that admins attach to lessons
+  useEffect(() => {
+    if (!module) return;
+    let live = true;
+    apiFetch(`api/get_lesson_videos.php?module=${module.id}`)
+      .then((r) => live && r.success && setVideos(r.data || {}))
+      .catch(() => {});
+    return () => {
+      live = false;
+    };
+  }, [module]);
 
   if (!module) return <NotFound />;
 
@@ -181,6 +195,17 @@ function Learn() {
                 Lesson {lessonIndex + 1} of {module.lessons.length}, {lesson.minutes} min read
               </p>
               <h2>{lesson.title}</h2>
+              {videos[lesson.id] && (
+                <div className="lessonVideo">
+                  <iframe
+                    src={`https://www.youtube-nocookie.com/embed/${videos[lesson.id]}?rel=0`}
+                    title={`Video: ${lesson.title}`}
+                    loading="lazy"
+                    allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              )}
               {lesson.body.map((p, i) => <p key={i}>{p}</p>)}
               <div className="takeaways">
                 <h3>Key takeaways</h3>

@@ -192,3 +192,6 @@
 .auth-footer p {
   margin: 0;
 }
+
+.auth-page .auth-note { font-size: 0.88rem; color: var(--ink-soft, #3d5a52); line-height: 1.6; margin-top: 14px; }
+.auth-page .auth-btn-link { display: block; text-align: center; text-decoration: none; margin-top: 16px; }

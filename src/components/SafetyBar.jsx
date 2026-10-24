@@ -1,17 +1,23 @@
 import { Link } from "react-router-dom";
 import { HiShieldCheck } from "react-icons/hi";
+import { useLang } from "../context/LanguageContext";
+import LangToggle from "./LangToggle";
 import "./SafetyBar.css";
 
 /** The one message every visitor should leave with, on every page. */
 function SafetyBar() {
+  const { t } = useLang();
   return (
     <div className="safetyBar" role="note">
       <HiShieldCheck aria-hidden="true" />
       <p>
-        <strong>Your bank will never ask for your OTP, PIN or password.</strong>{" "}
-        <span className="safetyMore">If anyone does, hang up.</span>
+        <strong>{t("safety.main")}</strong> <span className="safetyMore">{t("safety.more")}</span>
       </p>
-      <Link to="/alerts#check">Check a message</Link>
+      <div className="safetyLinks">
+        <Link to="/verify#check">{t("safety.check")}</Link>
+        <Link to="/help-now" className="safetyHelp">{t("safety.help")}</Link>
+        <LangToggle />
+      </div>
     </div>
   );
 }

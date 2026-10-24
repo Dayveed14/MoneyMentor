@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { apiPost } from "../../config/api";
-import { updateStoredUser } from "../../utils/auth";
+import { saveSession, updateStoredUser } from "../../utils/auth";
 import { useAuth } from "../../context/AuthContext";
 
 function Settings() {
@@ -41,7 +41,17 @@ function Settings() {
       });
       if (!res.success) throw new Error(res.message);
       setPw({ current: "", next: "", confirm: "" });
-      setPwMsg({ ok: true, text: "Password changed. Use it next time you log in." });
+      // The server signs out other devices and gives this one a fresh token
+      if (res.token) {
+        let remembered = false;
+        try {
+          remembered = Boolean(localStorage.getItem("token"));
+        } catch {
+          /* storage blocked */
+        }
+        saveSession(res.user || user, res.token, remembered);
+      }
+      setPwMsg({ ok: true, text: "Password changed. Any other devices have been signed out." });
     } catch (err) {
       setPwMsg({ ok: false, text: err.message });
     } finally {

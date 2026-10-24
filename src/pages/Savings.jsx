@@ -123,8 +123,8 @@ function Savings() {
             <div className="tipsContent">
               <h2 className="tipsTitle">In addition</h2>
               <p className="tipsText">
-                Don't be afraid to start small. Even if you can only save $10 a
-                week, that's still $520 a year. Over time, your savings will
+                Don't be afraid to start small. Even if you can only save ₦2,000 a
+                week, that's still ₦104,000 a year. Over time, your savings will
                 grow and you'll be able to reach your financial goals. Don't
                 give up. There will be times when you're tempted to spend your
                 savings on something else. But it's important to stay focused on

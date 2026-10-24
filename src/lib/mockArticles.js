@@ -3,7 +3,7 @@ const img = (id) => `https://images.unsplash.com/${id}?w=1200&h=800&fit=crop`;
 
 export const MOCK_ARTICLES = [
   {
-    id: 1, title: "Investing for beginners: where your first $100 should go", category: "Investing",
+    id: 1, title: "Investing for beginners: where your first ₦50,000 should go", category: "Investing",
     summary: "Before picking stocks, build the base: an emergency fund, cleared high-interest debt, and a simple index fund habit.",
     body: "Investing feels like something for people who already have money. It isn't. The habit matters far more than the first amount.\n\nStart with the base. Keep three months of essential expenses in an easy-access savings account. Pay off any debt that charges more than about 10% a year — no investment reliably beats that.\n\nThen automate. A small amount moved on payday into a broad, low-cost index fund beats waiting for the perfect moment. Markets go up and down; time in the market is what compounds.\n\nFinally, keep fees low and don't check daily. The less you tinker, the better most beginners do.",
     image_path: img("photo-1579621970563-ebec7560ff3e"), view_count: 2431, published_date: "2026-09-28 10:00:00",
@@ -17,7 +17,7 @@ export const MOCK_ARTICLES = [
   {
     id: 3, title: "Why we spend more when we feel rich: a look at behavioural finance", category: "Financial Planning",
     summary: "Mental accounting, anchoring and the payday effect — the quiet biases behind most money mistakes.",
-    body: "Behavioural finance studies why people make money choices that don't match their own goals.\n\nMental accounting is treating money differently depending on where it came from — a bonus feels like 'free' money, so it gets spent faster.\n\nAnchoring is judging a price against the first number you saw, which is why 'was $200, now $120' works so well.\n\nKnowing the biases doesn't make you immune, but it gives you a pause button. Before a big purchase, wait 48 hours and ask whether you'd still buy it at full price.",
+    body: "Behavioural finance studies why people make money choices that don't match their own goals.\n\nMental accounting is treating money differently depending on where it came from — a bonus feels like 'free' money, so it gets spent faster.\n\nAnchoring is judging a price against the first number you saw, which is why 'was ₦20,000, now ₦12,000' works so well.\n\nKnowing the biases doesn't make you immune, but it gives you a pause button. Before a big purchase, wait 48 hours and ask whether you'd still buy it at full price.",
     image_path: img("photo-1559526324-4b87b5e36e44"), view_count: 1312, published_date: "2026-09-12 12:00:00",
   },
   {

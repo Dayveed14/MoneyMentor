@@ -1,6 +1,7 @@
 import savingsImg from "../assets/images/savings.webp";
 import budgetingImg from "../assets/images/budgeting.webp";
 import finlitImg from "../assets/images/finlit.webp";
+import { DEBT, INVESTING, PLANNING } from "./modulesMore";
 
 /*
  * Course content. Lesson ids must match LEARNING_MODULES in the API
@@ -98,7 +99,7 @@ export const MODULES = [
         title: "Start small and stay motivated",
         minutes: 3,
         body: [
-          "Don't be afraid to start small. Saving $10 a week is $520 a year — and once the habit sticks, you can increase it.",
+          "Don't be afraid to start small. Saving ₦2,000 a week is ₦104,000 a year — and once the habit sticks, you can increase it.",
           "There will be months when you're tempted to dip into savings. Remind yourself what the goal is for, and if you do slip, restart the next payday rather than giving up.",
           "Celebrate milestones. Hitting your first month of emergency savings is worth marking — it keeps you motivated for the next one.",
         ],
@@ -227,8 +228,8 @@ export const MODULES = [
     ],
     quiz: [
       {
-        q: "Using 50/30/20, how much of a $1,000 payday goes to savings?",
-        options: ["$100", "$200", "$300", "$500"],
+        q: "Using 50/30/20, how much of a ₦200,000 payday goes to savings?",
+        options: ["₦20,000", "₦40,000", "₦60,000", "₦100,000"],
         answer: 1,
         why: "20% goes to savings and debt repayment.",
       },
@@ -358,10 +359,10 @@ export const MODULES = [
     ],
     quiz: [
       {
-        q: "You put $100 in savings at 10% a year. After 5 years you have…",
-        options: ["Exactly $150", "More than $150", "Less than $150", "Still $100"],
+        q: "You put ₦100,000 in savings at 10% a year. After 5 years you have…",
+        options: ["Exactly ₦150,000", "More than ₦150,000", "Less than ₦150,000", "Still ₦100,000"],
         answer: 1,
-        why: "Compound interest earns interest on interest, giving about $161.",
+        why: "Compound interest earns interest on interest, giving about ₦161,051.",
       },
       {
         q: "Someone calls from 'your bank' and asks for the OTP you just received. You…",
@@ -390,6 +391,9 @@ export const MODULES = [
     ],
   },
 ];
+
+// Newer modules (debt, investing, planning) live in modulesMore.js
+MODULES.push(DEBT, INVESTING, PLANNING);
 
 export const moduleById = (id) => MODULES.find((m) => m.id === id);
 export const TOTAL_LESSONS = MODULES.reduce((n, m) => n + m.lessons.length, 0);

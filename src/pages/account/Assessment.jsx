@@ -4,6 +4,7 @@ import { HiCheck, HiX, HiArrowRight } from "react-icons/hi";
 import { QUESTIONS, GOALS, TOPICS, LEVEL_TEXT, buildResult } from "../../data/assessment";
 import { moduleById } from "../../data/modules";
 import { apiPost } from "../../config/api";
+import KnowledgeGain from "../../components/KnowledgeGain";
 import { getUser, updateStoredUser } from "../../utils/auth";
 import WelcomeBanner from "../../components/WelcomeBanner";
 import "../Learn.css"; // shares the quiz option styles
@@ -20,6 +21,7 @@ function Assessment() {
   const [result, setResult] = useState(null);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+  const [history, setHistory] = useState([]);
 
   const toggleGoal = (id) => setGoals((g) => (g.includes(id) ? g.filter((x) => x !== id) : [...g, id]));
 
@@ -38,6 +40,7 @@ function Assessment() {
     try {
       const res = await apiPost("api/assessment.php", r);
       if (!res.success) throw new Error(res.message);
+      setHistory(res.history || []);
       const user = getUser();
       if (user) updateStoredUser({ ...user, assessed: true });
     } catch (err) {
@@ -57,7 +60,7 @@ function Assessment() {
           <p className="continueEyebrow checkEyebrow">Two-minute knowledge check</p>
           <h1>Let&apos;s find the right starting point for you</h1>
           <p>
-            Answer {QUESTIONS.length} quick questions about scams, saving, budgeting, credit and investing.
+            Answer {QUESTIONS.length} quick questions about scams, saving, budgeting, debt, investing and planning.
             There&apos;s no pass or fail. We use your answers to build a learning path around what you
             need most.
           </p>
@@ -160,6 +163,8 @@ function Assessment() {
           </Link>
         </div>
       </section>
+
+      <KnowledgeGain history={history} />
 
       <div className="accGrid">
         <section className="accPanel">

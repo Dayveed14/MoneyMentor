@@ -2,11 +2,13 @@ import { Link } from "react-router-dom";
 import savingsImg from "../assets/images/savings.webp";
 import budgetingImg from "../assets/images/budgeting.webp";
 import finlitImg from "../assets/images/finlit.webp";
+import { DEBT, INVESTING, PLANNING } from "../data/modulesMore";
 
 const ALL = [
   { to: "/savings", img: savingsImg, title: "Saving strategy", note: "Build a plan that adapts to your goals" },
   { to: "/budget", img: budgetingImg, title: "Budgeting & expense tracking", note: "See where every payday goes" },
   { to: "/finlit", img: finlitImg, title: "Financial literacy 101", note: "Interest, credit and fraud safety" },
+  ...[DEBT, INVESTING, PLANNING].map((m) => ({ to: m.page, img: m.image, title: m.title, note: m.topics.join(", ") })),
 ];
 
 /** Links to the other modules, shown at the bottom of a module page. */

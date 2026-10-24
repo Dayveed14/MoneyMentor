@@ -1,31 +1,42 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { HiChevronDown } from "react-icons/hi";
 import { apiFetch } from "../config/api";
+import { useLang } from "../context/LanguageContext";
+import ShareButtons from "./ShareButtons";
 import "./ScamAlerts.css";
 
-const SEVERITY = { high: "Act now", medium: "Be careful", low: "Good to know" };
-
 function AlertCard({ alert, open, onToggle }) {
+  const { lang, t } = useLang();
+  // Pidgin summary when the admin wrote one; everything else stays as written
+  const summary = lang === "pcm" && alert.summary_pcm ? alert.summary_pcm : alert.summary;
   return (
-    <li className={`alertCard sev-${alert.severity} ${open ? "open" : ""}`}>
+    <li className={`alertCard sev-${alert.severity} ${open ? "open" : ""}`} id={`alert-${alert.id}`}>
       <button type="button" className="alertTop" aria-expanded={open} onClick={onToggle}>
-        <span className={`alertSev s-${alert.severity}`}>{SEVERITY[alert.severity]}</span>
+        <span className={`alertSev s-${alert.severity}`}>{t(`sev.${alert.severity}`)}</span>
         <h3>{alert.title}</h3>
-        <p>{alert.summary}</p>
+        <p>{summary}</p>
         <span className="alertMore">
-          {open ? "Hide details" : "How to spot it"} <HiChevronDown aria-hidden="true" />
+          {open ? t("alerts.less") : t("alerts.more")} <HiChevronDown aria-hidden="true" />
         </span>
       </button>
       {open && (
         <div className="alertBody">
           <div>
-            <h4>Red flags</h4>
+            <h4>{t("alerts.flags")}</h4>
             <ul>{alert.red_flags.map((f) => <li key={f}>{f}</li>)}</ul>
           </div>
           <div>
-            <h4>What to do</h4>
+            <h4>{t("alerts.todo")}</h4>
             <ol>{alert.what_to_do.map((s) => <li key={s}>{s}</li>)}</ol>
+          </div>
+          <div className="alertShare">
+            <ShareButtons
+              compact
+              share={`alert=${alert.id}`}
+              label={t("alerts.share")}
+              text={`⚠️ Scam alert: ${alert.title}\n${summary}`}
+            />
           </div>
         </div>
       )}
@@ -37,13 +48,23 @@ function AlertCard({ alert, open, onToggle }) {
 function ScamAlerts({ limit = 20, showHeader = true }) {
   const [alerts, setAlerts] = useState(null);
   const [error, setError] = useState(false);
-  const [open, setOpen] = useState(null);
+  const { hash } = useLocation();
+  const { t } = useLang();
+  // A shared link like /alerts#alert-3 opens that alert
+  const linked = Number((hash.match(/^#alert-(\d+)$/) || [])[1]) || null;
+  const [open, setOpen] = useState(linked);
 
   useEffect(() => {
     apiFetch(`api/get_scam_alerts.php?limit=${limit}`)
       .then((r) => (r.success ? setAlerts(r.data) : setError(true)))
       .catch(() => setError(true));
   }, [limit]);
+
+  useEffect(() => {
+    if (!alerts || !linked) return;
+    setOpen(linked);
+    requestAnimationFrame(() => document.getElementById(`alert-${linked}`)?.scrollIntoView({ behavior: "smooth", block: "start" }));
+  }, [alerts, linked]);
 
   if (error || (alerts && alerts.length === 0)) return null; // the rest of the page still helps
 
@@ -53,10 +74,10 @@ function ScamAlerts({ limit = 20, showHeader = true }) {
         {showHeader && (
           <div className="alertsHead">
             <div>
-              <h2>Scams going around right now</h2>
-              <p>Updated by the MoneyMentor team. Tap an alert to learn the signs.</p>
+              <h2>{t("alerts.title")}</h2>
+              <p>{t("alerts.lead")}</p>
             </div>
-            <Link to="/alerts" className="btn btn-ghost">See all alerts</Link>
+            <Link to="/alerts" className="btn btn-ghost">{t("alerts.all")}</Link>
           </div>
         )}
         {!alerts ? (

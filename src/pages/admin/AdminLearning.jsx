@@ -1,8 +1,71 @@
-import { useAdmin, SectionState } from "./adminShared";
+import { useState } from "react";
+import { FiDownload } from "react-icons/fi";
+import { useAdmin, SectionState, downloadCsv } from "./adminShared";
+import LessonVideos from "./LessonVideos";
 import { moduleById } from "../../data/modules";
 import { TOPICS } from "../../data/assessment";
 
 const pct = (n, d) => (d ? Math.round((n / d) * 100) : 0);
+
+/** Before/after knowledge check for learners who took it at least twice. */
+function KnowledgeGainPanel({ gain }) {
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState("");
+  const exportResearch = async () => {
+    setBusy(true);
+    setErr("");
+    try {
+      await downloadCsv("research");
+    } catch (e) {
+      setErr(e.message);
+    } finally {
+      setBusy(false);
+    }
+  };
+  const change = gain.retested ? gain.latest_average - gain.first_average : 0;
+
+  return (
+    <section className="content-section">
+      <div className="sectionHeadRow">
+        <h2 className="sectionTitle">Knowledge gain</h2>
+        <button type="button" className="btn-secondary" onClick={exportResearch} disabled={busy}>
+          <FiDownload size={14} aria-hidden="true" /> {busy ? "Preparing..." : "Research data (CSV)"}
+        </button>
+      </div>
+      <p className="dash-muted">
+        Compares each learner&apos;s first knowledge check with their latest. Learners are prompted to retake the check once they finish their key lessons.
+        The CSV has one anonymous row per learner (no names or emails): first and latest scores per topic, lessons completed and quizzes passed.
+      </p>
+      {err && <p className="formErr">{err}</p>}
+      {gain.retested === 0 ? (
+        <p className="table-empty">No one has retaken the check yet.</p>
+      ) : (
+        <>
+          <div className="funnel">
+            <div><strong className="num">{gain.retested}</strong><span>learners retested</span></div>
+            <div><strong className="num">{gain.first_average}% → {gain.latest_average}%</strong><span>average score, first → latest</span></div>
+            <div><strong className={`num ${change > 0 ? "pos" : change < 0 ? "neg" : ""}`}>{change > 0 ? "+" : ""}{change} pts</strong><span>average change</span></div>
+            <div><strong className="num">{gain.improved} / {gain.same} / {gain.declined}</strong><span>improved / same / lower</span></div>
+          </div>
+          <h3>By topic (first → latest)</h3>
+          <div className="topicBars">
+            {Object.entries(gain.topics).filter(([, t]) => t.learners > 0).map(([id, t]) => (
+              <div className="topicBar gainRow" key={id}>
+                <span>{TOPICS[id]?.label || id}</span>
+                <div className="gainPair">
+                  <div className="hbar before"><span style={{ width: `${t.first}%` }} /></div>
+                  <div className="hbar"><span style={{ width: `${t.latest}%` }} /></div>
+                </div>
+                <span className="num">{t.first}% → {t.latest}%</span>
+              </div>
+            ))}
+          </div>
+          {gain.average_days_between !== null && <p className="dash-muted">Average time between first and latest check: {gain.average_days_between} days.</p>}
+        </>
+      )}
+    </section>
+  );
+}
 
 function AdminLearning() {
   const { data, loading, error, reload } = useAdmin("api/admin_learning.php");
@@ -12,6 +75,7 @@ function AdminLearning() {
 
   return (
     <div className="learningGrid">
+      {data.gain && <KnowledgeGainPanel gain={data.gain} />}
       <section className="content-section">
         <h2 className="sectionTitle">Knowledge check</h2>
         {a.learners === 0 ? (
@@ -89,7 +153,8 @@ function AdminLearning() {
           </section>
         );
       })}
-      <p className="dash-muted">Lesson and quiz content lives in the frontend code (src/data/modules.js).</p>
+      <LessonVideos />
+      <p className="dash-muted">Lesson and quiz text lives in the frontend code (src/data/modules.js and modulesMore.js).</p>
     </div>
   );
 }

@@ -155,3 +155,5 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+.alertShare { grid-column: 1 / -1; padding-top: 4px; }
+.alertCard { scroll-margin-top: 110px; }

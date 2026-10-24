@@ -4,6 +4,7 @@ import { HiMenuAlt3, HiX, HiChevronDown } from "react-icons/hi";
 import { useAuth } from "../context/AuthContext";
 import { useActiveSection } from "../hooks/useActiveSection";
 import logo from "../assets/images/logo.png";
+import { DEBT, INVESTING, PLANNING } from "../data/modulesMore";
 import "./Navigation.css";
 
 const SECTIONS = ["modules", "articles", "about"];
@@ -12,12 +13,22 @@ const MODULE_LINKS = [
   { to: "/savings", label: "Saving strategy", note: "Build an emergency fund and a plan that sticks" },
   { to: "/budget", label: "Budgeting & expense tracking", note: "Know where your money goes each month" },
   { to: "/finlit", label: "Financial literacy 101", note: "Interest, credit and staying safe from fraud" },
+  ...[DEBT, INVESTING, PLANNING].map((m) => ({ to: m.page, label: m.title, note: m.topics.join(", ") })),
+];
+
+const SAFE_LINKS = [
+  { to: "/alerts", label: "Scam alerts", note: "Scams going around right now" },
+  { to: "/verify", label: "Check before you trust", note: "A message, a loan app or an investment" },
+  { to: "/help-now", label: "Got scammed?", note: "What to do in the first hour" },
+  { to: "/report", label: "Report a scam", note: "Help us warn other people" },
+  { to: "/questions", label: "Ask an expert", note: "Questions answered by our team" },
 ];
 
 // Which nav item should light up on each standalone page
 const PAGE_SECTION = {
-  "/modules": "modules", "/savings": "modules", "/budget": "modules", "/finlit": "modules",
-  "/articles": "articles", "/about": "about", "/alerts": "alerts",
+  "/modules": "modules", "/savings": "modules", "/budget": "modules", "/finlit": "modules", "/module/debt": "modules", "/module/investing": "modules", "/module/planning": "modules",
+  "/articles": "articles", "/about": "about",
+  "/alerts": "safe", "/verify": "safe", "/help-now": "safe", "/report": "safe", "/questions": "safe",
 };
 
 function Navigation() {
@@ -32,6 +43,8 @@ function Navigation() {
 
   const [open, setOpen] = useState(false);
   const [modulesOpen, setModulesOpen] = useState(false);
+  const [safeOpen, setSafeOpen] = useState(false);
+  const safeRef = useRef(null);
   const [scrolled, setScrolled] = useState(false);
   const dropRef = useRef(null);
 
@@ -44,14 +57,16 @@ function Navigation() {
 
   // Close dropdowns on outside click or Escape
   useEffect(() => {
-    if (!modulesOpen && !accountOpen) return;
+    if (!modulesOpen && !accountOpen && !safeOpen) return;
     const onDown = (e) => {
       if (!dropRef.current?.contains(e.target)) setModulesOpen(false);
+      if (!safeRef.current?.contains(e.target)) setSafeOpen(false);
       if (!accountRef.current?.contains(e.target)) setAccountOpen(false);
     };
     const onKey = (e) => {
       if (e.key === "Escape") {
         setModulesOpen(false);
+        setSafeOpen(false);
         setAccountOpen(false);
       }
     };
@@ -61,11 +76,12 @@ function Navigation() {
       document.removeEventListener("mousedown", onDown);
       document.removeEventListener("keydown", onKey);
     };
-  }, [modulesOpen, accountOpen]);
+  }, [modulesOpen, accountOpen, safeOpen]);
 
   const close = () => {
     setOpen(false);
     setModulesOpen(false);
+    setSafeOpen(false);
     setAccountOpen(false);
   };
   const initials = (user?.name || "?").split(" ").map((w) => w[0]).slice(0, 2).join("").toUpperCase();
@@ -124,9 +140,29 @@ function Navigation() {
           <Link to="/#articles" className={cls("articles")} onClick={close}>
             Articles
           </Link>
-          <Link to="/alerts" className={cls("alerts")} onClick={close}>
-            Scam alerts
-          </Link>
+          <div className={`navDrop ${safeOpen ? "open" : ""}`} ref={safeRef}>
+            <div className="navDropTrigger">
+              <Link to="/alerts" className={cls("safe")} onClick={close}>
+                Stay safe
+              </Link>
+              <button
+                type="button"
+                className="navChevron"
+                aria-label="Show safety tools"
+                aria-expanded={safeOpen}
+                onClick={() => setSafeOpen((o) => !o)}>
+                <HiChevronDown size={18} />
+              </button>
+            </div>
+            <div className="navMenu">
+              {SAFE_LINKS.map((m) => (
+                <Link key={m.to} to={m.to} className="navMenuItem" onClick={close}>
+                  <strong>{m.label}</strong>
+                  <span>{m.note}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
           <Link to="/#about" className={cls("about")} onClick={close}>
             About
           </Link>
@@ -154,6 +190,8 @@ function Navigation() {
                 <Link to="/account" role="menuitem" onClick={close}>My dashboard</Link>
                 <Link to="/account/modules" role="menuitem" onClick={close}>My modules</Link>
                 <Link to="/account/budget" role="menuitem" onClick={close}>Budget planner</Link>
+                <Link to="/account/spending" role="menuitem" onClick={close}>Spending tracker</Link>
+                <Link to="/account/questions" role="menuitem" onClick={close}>My questions</Link>
                 <Link to="/account/settings" role="menuitem" onClick={close}>Settings</Link>
                 {isAdmin && <Link to="/dashboard" role="menuitem" onClick={close}>Admin dashboard</Link>}
                 <button type="button" role="menuitem" className="navLogout" onClick={() => { close(); logout(); if (pathname === "/login") navigate("/"); }}>

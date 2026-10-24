@@ -3,6 +3,7 @@ import ModuleHero from "../components/ModuleHero";
 import savingsImg from "../assets/images/savings.webp";
 import finlitImg from "../assets/images/finlit.webp";
 import budgetingImg from "../assets/images/budgeting.webp";
+import { DEBT, INVESTING, PLANNING } from "../data/modulesMore";
 import "./ModulePage.css";
 
 const modules = [
@@ -30,6 +31,7 @@ const modules = [
     quote: "“Where you'll unlock the power of smart money management.”",
     text: "“Budgeting and Expense Tracking” is where you'll unlock the power of smart money management. Discover the art of setting realistic financial goals, creating budgets that align with your aspirations, and gaining insights into your spending habits. Our intuitive tools allow you to track every dollar, ensuring you stay on course to achieve your financial milestones. Say goodbye to guesswork, and say hello to a clearer, more organized financial future.",
   },
+  ...[DEBT, INVESTING, PLANNING].map((m) => ({ to: m.page, title: m.title, image: m.image, imageAlt: "", quote: m.quote, text: m.overview })),
 ];
 
 function Modules() {
