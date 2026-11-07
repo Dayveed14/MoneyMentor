@@ -18,6 +18,7 @@ import NotFound from "./pages/NotFound";
 import AlertsPage from "./pages/AlertsPage";
 import ModuleDetail from "./pages/ModuleDetail";
 import HelpNow from "./pages/HelpNow";
+const Simulator = lazy(() => import("./pages/Simulator"));
 import Verify from "./pages/Verify";
 import ReportScam from "./pages/ReportScam";
 import Faq from "./pages/Faq";
@@ -60,6 +61,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/alerts" element={<AlertsPage />} />
             <Route path="/help-now" element={<HelpNow />} />
+            <Route path="/simulator" element={<Simulator />} />
             <Route path="/verify" element={<Verify />} />
             <Route path="/report" element={<ReportScam />} />
             <Route path="/questions" element={<Faq />} />

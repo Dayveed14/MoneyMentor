@@ -18,6 +18,7 @@ export function achievements(progress, extras = {}) {
     { id: "quiz-ace", title: "Quiz ace", text: "Score 100% on any module quiz", earned: quizzes.some((q) => q.best_percent === 100) },
     { id: "planner", title: "Planner", text: "Save your first budget", earned: Boolean(extras.hasBudget) },
     { id: "reader", title: "Curious reader", text: "Save an article to read later", earned: Boolean(extras.savedCount) },
+    { id: "scam-spotter", title: "Scam spotter", text: "Spot all 6 scams in the scam simulator", earned: extras.scamsSpotted >= 6 },
     { id: "graduate", title: "MoneyMentor graduate", text: `Complete all ${TOTAL_LESSONS} lessons and every quiz`, earned: stats.every(({ s }) => s.finished) },
   ];
 }

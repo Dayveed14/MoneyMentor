@@ -75,6 +75,24 @@ and both the result page and the dashboard show the before/after scores.
 Nigerian Pidgin. Text lives in `src/lib/i18n.js` (and `ADVICE_PCM` / `title_pcm` in `scamCheck.js`).
 Admins can add a Pidgin summary to each alert. Have a native speaker review the wording before big campaigns.
 
+## Animations and interactive learning
+No animation library: CSS keyframes in `src/motion/motion.css` plus small hooks in `src/motion/hooks.js`
+(`useCountUp`, `useInView`, `useReducedMotion`, `buzz` for a short vibration on phones). Everything switches
+off when the device's "reduce motion" setting is on.
+- **Lessons:** text flows in, takeaways tick in, and finishing a lesson shows a short "Lesson complete +10 XP" moment.
+- **"Try it" widgets** (`src/widgets/`), placed in lessons by `src/widgets/index.jsx`:
+  compound interest (savings/why-save, finlit/foundations), 50/30/20 on your own pay (budgeting/rule-50-30-20),
+  need-or-want card sort (budgeting/needs-vs-wants), spot the red flags (finlit/phishing, finlit/otp-fraud),
+  true cost of a loan (debt/true-cost), inflation shrinking ₦10,000 (investing/why-invest),
+  Ponzi scheme collapse (investing/ponzi), net-worth seesaw (planning/net-worth). To add one, write a component and map it to `"module/lesson"`.
+- **Quizzes:** questions slide in, right answers pop and wrong ones shake, "3 in a row" streaks, keys 1–4 and Enter,
+  an animated score ring with stars and confetti on a pass, and a review of missed questions.
+- **Rewards** (dashboard): XP and levels (`src/lib/xp.js`: 10 per lesson, 50 per quiz passed, 25 for 100%),
+  a daily learning streak (from `active_days` in `api/progress.php`), and a toast when a badge unlocks.
+- **Scam simulator** (`/simulator`, `src/data/simulator.js`): six scenarios on a pretend phone (bank call, BVN text,
+  "wrong transfer", loan fee, double-your-money, job fee). Messages arrive one at a time; each choice leads to a
+  win or a loss with the red flags explained. Results are kept in the browser; spotting all six earns the "Scam spotter" badge.
+
 ## Account pages
 `/forgot-password`, `/reset-password?token=…` (from the email) and `/unsubscribe?e=…&t=…` (from newsletter emails).
 

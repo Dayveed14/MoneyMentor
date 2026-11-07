@@ -1257,3 +1257,40 @@
 @media (max-width: 520px) {
   .expenseForm { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* ===== XP, level and streak (v7) ===== */
+.xpCard { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 18px; margin-bottom: 20px; animation: mmFadeUp .5s ease both; }
+.xpLevel, .xpStreak { background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 18px 20px; display: flex; gap: 16px; align-items: center; }
+.xpBadge { flex: none; width: 58px; height: 58px; border-radius: 18px; display: grid; place-items: center; font-size: 1.6rem; font-weight: 800; color: var(--ink); background: linear-gradient(135deg, #f3cf7a, var(--coin)); box-shadow: 0 8px 18px -8px rgba(232, 181, 74, .9); animation: mmPop .5s cubic-bezier(.2, .8, .3, 1.3) .1s both; }
+.xpLevel > div { flex: 1; min-width: 0; }
+.xpTotal { display: flex; align-items: center; gap: 6px; font-size: 1.35rem; font-weight: 800; color: var(--ink); margin: 2px 0 8px; }
+.xpTotal svg { color: var(--coin); }
+.xpTrack { height: 10px; border-radius: 99px; background: var(--mint); overflow: hidden; margin-bottom: 6px; }
+.xpTrack span { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--growth), var(--teal)); }
+.xpFlame { flex: none; width: 58px; height: 58px; border-radius: 50%; background: #f1f4f2; display: grid; place-items: center; position: relative; color: #b8c4be; }
+.xpFlame svg { font-size: 2rem; }
+.xpFlame strong { position: absolute; bottom: -4px; right: -4px; background: var(--ink); color: #fff; border-radius: 999px; min-width: 24px; height: 24px; display: grid; place-items: center; font-size: .8rem; padding: 0 6px; }
+.xpStreak.on .xpFlame { background: #fff1e0; color: #e8772e; }
+.xpStreak.on .xpFlame svg { animation: mmFlicker 1.8s ease-in-out infinite; transform-origin: 50% 90%; }
+@keyframes mmFlicker { 0%, 100% { transform: scale(1) rotate(-2deg); } 50% { transform: scale(1.08) rotate(2deg); } }
+.streakLabel { font-weight: 700; color: var(--ink); margin: 0 0 6px; }
+.weekDots { list-style: none; padding: 0; margin: 0 0 6px; display: flex; gap: 5px; }
+.weekDots li { width: 26px; height: 26px; border-radius: 50%; background: #eef3f0; display: grid; place-items: center; font-size: .7rem; font-weight: 700; color: var(--sage); }
+.weekDots li.on { background: #e8772e; color: #fff; animation: mmPop .4s ease both; }
+.weekDots li.today { box-shadow: 0 0 0 2px var(--ink); }
+
+/* Badges pop in, earned ones shine */
+.badges .badge { animation: mmFadeUp .45s ease both; animation-delay: calc(var(--i, 0) * 60ms); }
+.badges .badge.on .badgeIcon { animation: mmPop .5s cubic-bezier(.2, .8, .3, 1.4) both; animation-delay: calc(var(--i, 0) * 60ms + .2s); }
+
+.badgeToast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 1600; display: flex; align-items: center; gap: 12px; background: var(--ink); color: #fff; border-radius: 18px; padding: 14px 16px; box-shadow: 0 24px 50px -16px rgba(15, 61, 51, .7); width: min(420px, calc(100vw - 32px)); animation: mmToastIn .5s cubic-bezier(.2, .8, .3, 1.2) both; }
+@keyframes mmToastIn { from { opacity: 0; transform: translate(-50%, 30px) scale(.9); } to { opacity: 1; transform: translate(-50%, 0); } }
+.btIcon { flex: none; font-size: 2.4rem; color: var(--coin); animation: mmPop .6s cubic-bezier(.2, .8, .3, 1.5) .2s both; }
+.badgeToast > div { flex: 1; display: grid; gap: 2px; min-width: 0; }
+.btEyebrow { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--coin); font-weight: 700; }
+.badgeToast .small { color: #b9dccd; }
+.badgeToast button { background: none; border: 0; color: #b9dccd; cursor: pointer; font-size: 1.2rem; padding: 4px; }
+
+@media (max-width: 760px) {
+  .xpCard { grid-template-columns: minmax(0, 1fr); }
+}

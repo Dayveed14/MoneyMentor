@@ -1,0 +1,91 @@
+.simulator { background: var(--paper); padding-bottom: 64px; }
+.simHero { background: var(--ink); color: #d9eee5; padding: 52px 0 40px; position: relative; overflow: hidden; }
+.simHero::after { content: ""; position: absolute; right: -80px; top: -80px; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(232, 181, 74, .25), transparent 70%); animation: simGlow 6s ease-in-out infinite; }
+@keyframes simGlow { 50% { transform: scale(1.2) translate(-20px, 20px); } }
+.simKicker { color: var(--coin); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: .8rem; margin-bottom: 8px; }
+.simHero h1 { color: #fff; font-size: clamp(2.1rem, 5vw, 3.4rem); font-weight: 800; margin-bottom: 12px; animation: mmFadeUp .5s ease both; }
+.simHero p { max-width: 62ch; line-height: 1.65; }
+.simScore { display: flex; align-items: center; gap: 12px; margin-top: 18px; max-width: 420px; }
+.ssBar { flex: 1; height: 10px; border-radius: 99px; background: rgba(255,255,255,.15); overflow: hidden; }
+.ssBar span { display: block; height: 100%; background: var(--coin); border-radius: 99px; transition: width .8s ease; }
+.simScore span.num { white-space: nowrap; font-weight: 600; color: #fff; }
+
+.simGridWrap { padding-top: 32px; display: grid; gap: 32px; }
+.simGrid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.simCard { width: 100%; height: 100%; text-align: left; background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 20px; display: grid; gap: 8px; align-content: start; cursor: pointer; font: inherit; color: var(--ink); transition: transform .2s ease, box-shadow .2s ease, border-color .2s; }
+.simCard:hover { transform: translateY(-4px); box-shadow: 0 18px 34px -20px rgba(15, 61, 51, .5); border-color: var(--growth); }
+.simCard:active { transform: scale(.98); }
+.simCard strong { font-size: 1.1rem; }
+.simCard > span:not(.simIcon) { color: var(--ink-soft); font-size: .92rem; line-height: 1.5; }
+.simCard em { font-style: normal; font-weight: 600; font-size: .85rem; color: var(--teal-dark); display: flex; align-items: center; gap: 5px; margin-top: 4px; }
+.simCard.win { border-color: #9fd8b9; }
+.simCard.win em { color: var(--growth); }
+.simCard.lose em { color: #c9302c; }
+.simIcon { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; font-size: 1.4rem; color: #fff; }
+.ch-call { background: #0b8bb5; } .ch-sms { background: #5b6f69; } .ch-whatsapp { background: #1f9d55; } .ch-email { background: #b5651d; }
+
+/* Playing */
+.simPlay { padding-top: 24px; }
+.simBack { display: inline-flex; align-items: center; gap: 6px; background: none; border: 0; font: inherit; font-weight: 600; color: var(--ink); cursor: pointer; padding: 6px 0; margin-bottom: 12px; }
+.simStage { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 32px; align-items: start; }
+
+.phone { background: #10241f; border-radius: 40px; padding: 12px; box-shadow: 0 40px 70px -30px rgba(15, 61, 51, .7), inset 0 0 0 2px #2c4a42; height: min(720px, calc(100vh - 140px)); min-height: 520px; display: flex; flex-direction: column; animation: mmFadeUp .5s ease both; transition: box-shadow .4s; }
+.phone.ended.lose { animation: mmShake .5s ease; box-shadow: 0 40px 70px -30px rgba(201, 48, 44, .7), inset 0 0 0 2px #a12a22; }
+.phone.ended.win { box-shadow: 0 40px 70px -30px rgba(47, 158, 110, .8), inset 0 0 0 2px var(--growth); }
+.phoneTop { background: #f6f8f7; border-radius: 30px 30px 0 0; position: relative; }
+.phoneNotch { display: block; width: 110px; height: 22px; background: #10241f; border-radius: 0 0 14px 14px; margin: 0 auto; }
+.balanceBar { display: flex; justify-content: space-between; align-items: center; padding: 8px 18px; font-size: .78rem; color: var(--sage); }
+.balanceBar strong { font-size: .95rem; color: var(--ink); transition: color .3s; }
+.balanceBar strong.drain { color: #c9302c; animation: mmShake .5s ease .2s; }
+.chatHead { display: flex; align-items: center; gap: 10px; padding: 10px 16px 12px; border-bottom: 1px solid #e3ebe7; }
+.chAvatar { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 1.1rem; background: inherit; }
+.chatHead.ch-call .chAvatar { background: #0b8bb5; } .chatHead.ch-sms .chAvatar { background: #5b6f69; } .chatHead.ch-whatsapp .chAvatar { background: #1f9d55; } .chatHead.ch-email .chAvatar { background: #b5651d; }
+.chatHead { background: transparent !important; }
+.chatHead strong { display: block; font-size: .92rem; color: var(--ink); word-break: break-all; }
+.chatHead span { font-size: .75rem; color: var(--sage); }
+.chat { flex: 1; overflow-y: auto; background: #e8efe9; padding: 14px 12px; display: flex; flex-direction: column; gap: 8px; }
+.bubble { max-width: 84%; padding: 9px 12px; border-radius: 16px; font-size: .92rem; line-height: 1.45; animation: mmBubble .35s cubic-bezier(.2, .8, .3, 1.2) both; box-shadow: 0 1px 1px rgba(0,0,0,.06); word-wrap: break-word; }
+@keyframes mmBubble { from { opacity: 0; transform: translateY(10px) scale(.92); } to { opacity: 1; transform: none; } }
+.bubble.them { align-self: flex-start; background: #fff; border-bottom-left-radius: 4px; color: var(--ink); transform-origin: bottom left; }
+.bubble.me { align-self: flex-end; background: #d6f5dd; border-bottom-right-radius: 4px; color: var(--ink); transform-origin: bottom right; }
+.bubble.system { align-self: center; max-width: 92%; background: #fff7e0; color: #6b4e00; font-size: .82rem; text-align: center; border-radius: 12px; }
+.bubble.typing { display: flex; gap: 4px; padding: 12px 14px; }
+.bubble.typing i { width: 7px; height: 7px; border-radius: 50%; background: #9fb3ab; animation: mmTyping 1s infinite; }
+.bubble.typing i:nth-child(2) { animation-delay: .15s; }
+.bubble.typing i:nth-child(3) { animation-delay: .3s; }
+.choices { background: #fff; border-radius: 0 0 30px 30px; padding: 12px 12px 18px; display: grid; gap: 8px; animation: mmSlideUp .35s ease both; }
+@keyframes mmSlideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.choices p { margin: 0 4px 2px; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--sage); }
+.choices button { text-align: left; border: 1.5px solid var(--line); background: var(--paper); border-radius: 14px; padding: 11px 14px; font: inherit; font-size: .9rem; font-weight: 500; color: var(--ink); cursor: pointer; transition: border-color .2s, transform .15s, background .2s; }
+.choices button:hover { border-color: var(--teal); background: #fff; }
+.choices button:active { transform: scale(.98); }
+.phone .chat:last-child { border-radius: 0 0 30px 30px; }
+
+.simSide { position: sticky; top: 100px; }
+.simHint, .simOutcome { background: #fff; border: 1px solid var(--line); border-radius: 24px; padding: 24px; animation: mmFadeUp .4s ease both; }
+.simHint h2, .simOutcome h2 { color: var(--ink); font-size: 1.5rem; margin-bottom: 8px; }
+.simHint p { color: var(--ink-soft); line-height: 1.6; }
+.simOutcome.win { border-color: #9fd8b9; }
+.simOutcome.lose { border-color: #f1b3ab; background: #fffafa; }
+.soIcon { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; font-size: 2.2rem; margin-bottom: 12px; animation: mmPop .5s cubic-bezier(.2, .8, .3, 1.4) both; }
+.simOutcome.win .soIcon { background: #e3f6ea; color: var(--growth); }
+.simOutcome.lose .soIcon { background: #fdecea; color: #c9302c; }
+.simOutcome p { color: var(--ink-soft); line-height: 1.6; }
+.simOutcome h3 { margin: 16px 0 8px; font-size: 1rem; color: var(--ink); }
+.simOutcome ul { margin: 0; padding-left: 0; list-style: none; display: grid; gap: 6px; }
+.simOutcome li { padding: 8px 12px; border-radius: 10px; background: #fdecea; color: #7a1f12; font-size: .92rem; }
+.soActions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.soActions .btn { display: inline-flex; align-items: center; gap: 6px; }
+.soLesson { display: inline-block; margin-top: 12px; color: var(--teal-dark); font-weight: 600; }
+
+@media (max-width: 860px) {
+  .simStage { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .phone { height: 600px; max-width: 420px; width: 100%; margin: 0 auto; }
+  .simSide { position: static; }
+}
+@media (max-width: 420px) {
+  .phone { border-radius: 30px; padding: 8px; height: 560px; }
+  .phoneTop { border-radius: 24px 24px 0 0; }
+  .choices { border-radius: 0 0 24px 24px; }
+}
+.chatHead .chAvatar { color: #fff; font-size: 1.15rem; }

@@ -1,5 +1,6 @@
 import Hero from "../components/Hero";
 import GoldenRules from "../components/GoldenRules";
+import SimulatorBand from "../components/SimulatorBand";
 import ScamAlerts from "../components/ScamAlerts";
 import AskBand from "../components/AskBand";
 import Advantage from "../components/Advantage";
@@ -16,6 +17,7 @@ function Home() {
     <>
       <Hero />
       <GoldenRules />
+      <SimulatorBand />
       <ScamAlerts limit={3} />
       <AskBand />
       <Advantage />

@@ -5,6 +5,9 @@ import { useAuth } from "../../context/AuthContext";
 import { useProgress, moduleStats, nextStep, orderedModules } from "../../hooks/useProgress";
 import { useAssessment } from "../../hooks/useAssessment";
 import KnowledgeGain from "../../components/KnowledgeGain";
+import XpBar from "./XpBar";
+import { loadResults } from "../../data/simulator";
+import BadgeToast from "./BadgeToast";
 import { TOPICS } from "../../data/assessment";
 import { MODULES, TOTAL_LESSONS } from "../../data/modules";
 import { achievements } from "../../lib/achievements";
@@ -34,7 +37,8 @@ function Overview() {
 
   const lessonsDone = MODULES.reduce((n, m) => n + moduleStats(m, progress).completed, 0);
   const step = nextStep(progress, path);
-  const badges = achievements(progress, { hasBudget: Boolean(budget), savedCount: saved.length });
+  const scamsSpotted = Object.values(loadResults()).filter((r) => r === "win").length;
+  const badges = achievements(progress, { hasBudget: Boolean(budget), savedCount: saved.length, scamsSpotted });
   const earned = badges.filter((b) => b.earned).length;
 
   // Finished every key lesson from the last check? Time to measure what they learned.
@@ -72,6 +76,9 @@ function Overview() {
           <Link to="/account/check" className="btn ctaBtnDark">Retake the check</Link>
         </section>
       )}
+
+      <BadgeToast badges={badges} userId={user?.id} ready={!loading} />
+      {!loading && <XpBar progress={progress} />}
 
       <KnowledgeGain history={history} compact />
 
@@ -204,7 +211,7 @@ function Overview() {
         </div>
         <ul className="badges">
           {badges.map((b) => (
-            <li key={b.id} className={b.earned ? "badge on" : "badge"}>
+            <li key={b.id} className={b.earned ? "badge on" : "badge"} style={{ "--i": badges.indexOf(b) }}>
               <span className="badgeIcon" aria-hidden="true">{b.earned ? <HiCheck /> : <HiLockClosed />}</span>
               <strong>{b.title}</strong>
               <span>{b.text}</span>

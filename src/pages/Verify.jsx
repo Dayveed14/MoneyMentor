@@ -37,6 +37,7 @@ function Verify() {
             <a href="#check">A message or call</a>
             <a href="#loan">A loan app</a>
             <a href="#invest">An investment</a>
+            <Link to="/simulator">Practise in the scam simulator</Link>
           </nav>
         </div>
       </header>

@@ -56,6 +56,7 @@ function Footer() {
         <nav className="footerCol" aria-label="Stay safe">
           <h3>Stay safe</h3>
           <Link to="/alerts">Scam alerts</Link>
+          <Link to="/simulator">Scam simulator</Link>
           <Link to="/verify">Check before you trust</Link>
           <Link to="/help-now">Got scammed?</Link>
           <Link to="/report">Report a scam</Link>

@@ -18,6 +18,7 @@ const MODULE_LINKS = [
 
 const SAFE_LINKS = [
   { to: "/alerts", label: "Scam alerts", note: "Scams going around right now" },
+  { to: "/simulator", label: "Scam simulator", note: "Can you spot the scam? Play and see" },
   { to: "/verify", label: "Check before you trust", note: "A message, a loan app or an investment" },
   { to: "/help-now", label: "Got scammed?", note: "What to do in the first hour" },
   { to: "/report", label: "Report a scam", note: "Help us warn other people" },
@@ -28,7 +29,7 @@ const SAFE_LINKS = [
 const PAGE_SECTION = {
   "/modules": "modules", "/savings": "modules", "/budget": "modules", "/finlit": "modules", "/module/debt": "modules", "/module/investing": "modules", "/module/planning": "modules",
   "/articles": "articles", "/about": "about",
-  "/alerts": "safe", "/verify": "safe", "/help-now": "safe", "/report": "safe", "/questions": "safe",
+  "/alerts": "safe", "/verify": "safe", "/help-now": "safe", "/report": "safe", "/questions": "safe", "/simulator": "safe",
 };
 
 function Navigation() {

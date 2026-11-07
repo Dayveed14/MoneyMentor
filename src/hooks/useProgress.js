@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { apiFetch, apiPost } from "../config/api";
 import { MODULES, PASS_PERCENT } from "../data/modules";
 
-const EMPTY = { lessons: { savings: [], budgeting: [], finlit: [], debt: [], investing: [], planning: [] }, quizzes: {} };
+const EMPTY = { lessons: { savings: [], budgeting: [], finlit: [], debt: [], investing: [], planning: [] }, quizzes: {}, activeDays: [] };
 
 /** Loads the learner's progress and exposes helpers to update it. */
 export function useProgress() {
@@ -16,7 +16,7 @@ export function useProgress() {
     try {
       const res = await apiFetch("api/progress.php");
       if (!res.success) throw new Error(res.message);
-      setProgress({ lessons: { ...EMPTY.lessons, ...res.lessons }, quizzes: res.quizzes || {} });
+      setProgress({ lessons: { ...EMPTY.lessons, ...res.lessons }, quizzes: res.quizzes || {}, activeDays: res.active_days || [] });
     } catch (err) {
       setError(err.message || "Your progress didn't load.");
     } finally {
@@ -37,7 +37,7 @@ export function useProgress() {
     });
     try {
       const res = await apiPost("api/progress.php", { module, lesson, completed });
-      if (res.success) setProgress({ lessons: { ...EMPTY.lessons, ...res.lessons }, quizzes: res.quizzes || {} });
+      if (res.success) setProgress({ lessons: { ...EMPTY.lessons, ...res.lessons }, quizzes: res.quizzes || {}, activeDays: res.active_days || [] });
     } catch {
       /* keep the optimistic update; it will resync on next load */
     }
